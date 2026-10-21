@@ -304,7 +304,8 @@ const TEAM=[
  {n:'최은지',p:'p5'},{n:'문장한',p:'p6'},{n:'최병익',p:'p7'},{n:'박성준',p:'p8'},
  {n:'최기윤',p:'p9'},{n:'정현우',p:'p10'},{n:'임성윤',p:'p11'}
 ];
-let TITLES={}; try{TITLES=JSON.parse(localStorage.getItem('titles')||'{}')}catch(e){}
+const DEFAULT_TITLES={'이현희':'이사','김호철':'차장','조은희':'과장','이은영':'차장','최은지':'과장','문장한':'과장','최병익':'대리','박성준':'대리','최기윤':'대리','정현우':'사원','임성윤':'사원'};
+let TITLES={...DEFAULT_TITLES}; try{const sv=JSON.parse(localStorage.getItem('titles')||'{}');Object.keys(sv).forEach(k=>{if(sv[k])TITLES[k]=sv[k]})}catch(e){}
 const FIRMS=['타이어뱅크㈜','성공을만드는㈜','재미슨㈜','농업법인㈜풍년농사','㈜최고좋은터 행복한집','㈜AP홀딩스','성공㈜','건물코디뱅크㈜','파이프뱅크','선농종합식품㈜','㈜파멥신','에어프레미아㈜','㈜폴리텍','㈜영종도','농업법인㈜좋은농사','재단법인 성공사','성공정보통신㈜','좋은타이어㈜','㈜원풍약품상사','㈜AP랩스','굿타이어㈜','심뱅스㈜'];
 const MON=['1월','2월','3월','4월','5월','6월','7월','8월','9월'];
 const CHG=[35,32,46,36,35,33,38,37,30], REN=[28,28,31,33,38,40,31,26,18];
@@ -343,7 +344,7 @@ add({cls:'cover',html:()=>`
  <div class="l"><div class="eyebrow rv" style="--i:0">QUARTERLY PERFORMANCE REPORT</div>
  <h1 class="rv" style="--i:1">2026년<br>3분기 실적보고서</h1>
  <div class="meta rv" style="--i:2"><b>경영전략본부</b><span>·</span><span>2026. 10. 27</span></div>
- <div class="names rv" style="--i:3">${TEAM.map(t=>t.n).join('  ·  ')}</div></div>
+ <div class="names rv" style="--i:3">${TEAM.slice(0,3).map(t=>t.n).join('  ·  ')}<br>${TEAM.slice(3).map(t=>t.n).join('  ·  ')}</div></div>
  <div class="r rv" style="--i:2"><div class="logo3d"><img src="assets/logo.png" alt="TIRE BANK"></div></div>`,
  say:[["안녕하십니까. 경영전략본부 2026년 3분기 실적보고를 시작하겠습니다."],["오늘 보고는 3분기 업무 성과와 4분기 중점 추진 목표, 두 가지로 구성되어 있습니다."]]});
 
