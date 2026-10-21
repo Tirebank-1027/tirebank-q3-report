@@ -15,7 +15,7 @@
   --serif:'Noto Serif KR','Batang',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:#03060e;color:var(--ink);font-family:var(--sans);overflow:hidden}
+html,body{height:100%;background:#03060e;color:var(--ink);font-family:var(--sans);overflow:hidden;word-break:keep-all}
 button{font-family:inherit;cursor:pointer}
 
 /* ===== stage ===== */
@@ -36,8 +36,10 @@ button{font-family:inherit;cursor:pointer}
 .hd h2{font-size:54px;font-weight:900;letter-spacing:-1px;line-height:1.15}
 .hd p{font-size:26px;color:var(--mute);margin-top:6px;font-weight:400}
 .hd::after{content:"";position:absolute;left:0;right:0;bottom:-18px;height:1px;background:linear-gradient(90deg,var(--gold),transparent 70%)}
-.brand{position:absolute;right:96px;top:44px;display:flex;align-items:center;gap:12px;opacity:.9}
+.brand{position:absolute;right:96px;top:44px;display:flex;align-items:center;gap:16px;opacity:.95}
 .brand img{height:54px;filter:drop-shadow(0 6px 10px #0008)}
+.brand .ci-premia{height:30px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))}
+.brand .ci-div{width:1px;height:32px;background:rgba(255,255,255,.24);margin:0 2px}
 .pg{position:absolute;right:96px;bottom:118px;font-size:22px;color:var(--mute);letter-spacing:2px}
 
 /* generic */
@@ -46,9 +48,9 @@ button{font-family:inherit;cursor:pointer}
 .row{display:flex;gap:28px}.col{display:flex;flex-direction:column;gap:24px}
 .grow{flex:1;min-width:0}
 .gold{color:var(--gold2)} .red{color:#ff6b73} .blue{color:var(--blue)} .mint{color:var(--mint)} .mute{color:var(--mute)}
-.big{font-weight:900;letter-spacing:-2px;line-height:1}
+.big{font-weight:900;letter-spacing:0px;line-height:1;font-variant-numeric:tabular-nums}
 .lbl{font-size:26px;color:var(--mute)}
-.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:999px;font-size:26px;background:rgba(255,255,255,.08);border:1px solid var(--line)}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:999px;font-size:26px;background:rgba(255,255,255,.08);border:1px solid var(--line);white-space:nowrap}
 .chip.g{background:rgba(217,182,111,.16);border-color:rgba(217,182,111,.5);color:var(--gold2)}
 .chip.r{background:rgba(229,48,59,.18);border-color:rgba(229,48,59,.55);color:#ffb3b8}
 .tag{font-size:22px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
@@ -139,8 +141,8 @@ ul.pts li::before{content:"";position:absolute;left:4px;top:.55em;width:14px;hei
 .g5{display:grid;grid-template-columns:repeat(5,1fr);gap:26px}
 .top10{padding:28px 26px;border-radius:26px;height:316px;display:flex;flex-direction:column;position:relative;overflow:hidden}
 .top10 .n{font-family:var(--serif);font-weight:800;font-size:26px;color:var(--gold)}
-.top10 h4{font-size:30px;font-weight:700;margin:10px 0 auto;line-height:1.3}
-.top10 .v{font-size:56px;font-weight:900;letter-spacing:-2px;color:var(--gold2);line-height:1}
+.top10 h4{font-size:28px;font-weight:700;margin:10px 0 auto;line-height:1.35;min-height:2.7em;word-break:keep-all}
+.top10 .v{font-size:52px;font-weight:900;letter-spacing:0px;color:var(--gold2);line-height:1;font-variant-numeric:tabular-nums}
 .top10 .u{font-size:24px;color:var(--mute);margin-top:8px}
 .top10::after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(217,182,111,.25),transparent 70%)}
 
@@ -166,7 +168,7 @@ ul.pts li::before{content:"";position:absolute;left:4px;top:.55em;width:14px;hei
 .flow{display:flex;align-items:stretch;gap:0}
 .fb{flex:1;padding:30px 28px;position:relative;border-radius:24px}
 .fa{width:70px;display:grid;place-items:center;flex:none;color:var(--gold);font-size:44px}
-.fb h4{font-size:32px;font-weight:700;margin-bottom:14px}
+.fb h4{font-size:30px;font-weight:700;margin-bottom:14px;line-height:1.35;word-break:keep-all}
 .fb p,.fb li{font-size:26px;line-height:1.5;color:#dfe5f3}
 
 /* bars */
@@ -183,7 +185,7 @@ ul.pts li::before{content:"";position:absolute;left:4px;top:.55em;width:14px;hei
 .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .kpi{padding:26px 28px;border-radius:26px}
 .kpi .k{font-size:24px;color:var(--mute)}
-.kpi .n{font-size:72px;font-weight:900;letter-spacing:-3px;line-height:1.05;margin:6px 0}
+.kpi .n{font-size:70px;font-weight:900;letter-spacing:0px;line-height:1.05;margin:6px 0;font-variant-numeric:tabular-nums}
 .kpi .n small{font-size:34px;font-weight:700;margin-left:6px;letter-spacing:0}
 .kpi .s{font-size:24px;color:var(--mint)}
 
@@ -256,7 +258,382 @@ svg text{font-family:var(--sans)}
 .edit{text-align:left;display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;margin-bottom:24px}
 .edit label{font-size:15px;color:var(--mute)}
 .edit input{width:100%;margin-top:4px;padding:10px 12px;border-radius:10px;border:1px solid #2a3858;background:#0a1226;color:#fff;font-size:17px}
+
+/* --- KOREA MAP & STORE EXPLORER STYLES --- */
+:root {
+  --pastel-mint: #2df5b2;
+  --pastel-pink: #ff7ebb;
+  --pastel-lemon: #ffe855;
+  --pastel-cyan: #4de2ff;
+  --pastel-purple: #cf8fff;
+  --pastel-peach: #ffaa7a;
+}
+.map-prov {
+  fill: rgba(30, 41, 59, 0.7);
+  stroke: rgba(255, 255, 255, 0.25);
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.map-prov:hover {
+  stroke-width: 2.8px;
+  filter: brightness(1.25);
+}
+.map-prov[data-mega="수도권"]:hover,
+.map-wrap.active-수도권 .map-prov[data-mega="수도권"],
+.map-wrap.active-all .map-prov[data-mega="수도권"] {
+  fill: rgba(45, 245, 178, 0.45) !important;
+  stroke: var(--pastel-mint) !important;
+  stroke-width: 2.2px;
+  filter: drop-shadow(0 0 10px rgba(45, 245, 178, 0.85));
+}
+.map-prov[data-mega="영남권"]:hover,
+.map-wrap.active-영남권 .map-prov[data-mega="영남권"],
+.map-wrap.active-all .map-prov[data-mega="영남권"] {
+  fill: rgba(255, 126, 187, 0.45) !important;
+  stroke: var(--pastel-pink) !important;
+  stroke-width: 2.2px;
+  filter: drop-shadow(0 0 10px rgba(255, 126, 187, 0.85));
+}
+.map-prov[data-mega="충청권"]:hover,
+.map-wrap.active-충청권 .map-prov[data-mega="충청권"],
+.map-wrap.active-all .map-prov[data-mega="충청권"] {
+  fill: rgba(255, 232, 85, 0.45) !important;
+  stroke: var(--pastel-lemon) !important;
+  stroke-width: 2.2px;
+  filter: drop-shadow(0 0 10px rgba(255, 232, 85, 0.85));
+}
+.map-prov[data-mega="호남권"]:hover,
+.map-wrap.active-호남권 .map-prov[data-mega="호남권"],
+.map-wrap.active-all .map-prov[data-mega="호남권"] {
+  fill: rgba(77, 226, 255, 0.45) !important;
+  stroke: var(--pastel-cyan) !important;
+  stroke-width: 2.2px;
+  filter: drop-shadow(0 0 10px rgba(77, 226, 255, 0.85));
+}
+.map-prov[data-mega="강원권"]:hover,
+.map-wrap.active-강원권 .map-prov[data-mega="강원권"],
+.map-wrap.active-all .map-prov[data-mega="강원권"] {
+  fill: rgba(207, 143, 255, 0.45) !important;
+  stroke: var(--pastel-purple) !important;
+  stroke-width: 2.2px;
+  filter: drop-shadow(0 0 10px rgba(207, 143, 255, 0.85));
+}
+.map-prov[data-mega="제주권"]:hover,
+.map-wrap.active-제주권 .map-prov[data-mega="제주권"],
+.map-wrap.active-all .map-prov[data-mega="제주권"] {
+  fill: rgba(255, 170, 122, 0.45) !important;
+  stroke: var(--pastel-peach) !important;
+  stroke-width: 2.2px;
+  filter: drop-shadow(0 0 10px rgba(255, 170, 122, 0.85));
+}
+.map-badge-bg {
+  fill: rgba(15, 23, 42, 0.9);
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 1.5px;
+  transition: all 0.2s ease;
+}
+.map-badge-txt {
+  fill: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  pointer-events: none;
+}
+.map-wrap.active-수도권 .label-수도권 .map-badge-bg, .map-wrap.active-all .label-수도권 .map-badge-bg { stroke: var(--pastel-mint); fill: rgba(45,245,178,0.3); filter: drop-shadow(0 0 8px rgba(45,245,178,0.9)); }
+.map-wrap.active-수도권 .label-수도권 .map-badge-txt, .map-wrap.active-all .label-수도권 .map-badge-txt { fill: var(--pastel-mint); font-weight:800; }
+
+.map-wrap.active-영남권 .label-영남권 .map-badge-bg, .map-wrap.active-all .label-영남권 .map-badge-bg { stroke: var(--pastel-pink); fill: rgba(255,126,187,0.3); filter: drop-shadow(0 0 8px rgba(255,126,187,0.9)); }
+.map-wrap.active-영남권 .label-영남권 .map-badge-txt, .map-wrap.active-all .label-영남권 .map-badge-txt { fill: var(--pastel-pink); font-weight:800; }
+
+.map-wrap.active-충청권 .label-충청권 .map-badge-bg, .map-wrap.active-all .label-충청권 .map-badge-bg { stroke: var(--pastel-lemon); fill: rgba(255,232,85,0.3); filter: drop-shadow(0 0 8px rgba(255,232,85,0.9)); }
+.map-wrap.active-충청권 .label-충청권 .map-badge-txt, .map-wrap.active-all .label-충청권 .map-badge-txt { fill: var(--pastel-lemon); font-weight:800; }
+
+.map-wrap.active-호남권 .label-호남권 .map-badge-bg, .map-wrap.active-all .label-호남권 .map-badge-bg { stroke: var(--pastel-cyan); fill: rgba(77,226,255,0.3); filter: drop-shadow(0 0 8px rgba(77,226,255,0.9)); }
+.map-wrap.active-호남권 .label-호남권 .map-badge-txt, .map-wrap.active-all .label-호남권 .map-badge-txt { fill: var(--pastel-cyan); font-weight:800; }
+
+.map-wrap.active-강원권 .label-강원권 .map-badge-bg, .map-wrap.active-all .label-강원권 .map-badge-bg { stroke: var(--pastel-purple); fill: rgba(207,143,255,0.3); filter: drop-shadow(0 0 8px rgba(207,143,255,0.9)); }
+.map-wrap.active-강원권 .label-강원권 .map-badge-txt, .map-wrap.active-all .label-강원권 .map-badge-txt { fill: var(--pastel-purple); font-weight:800; }
+
+.map-wrap.active-제주권 .label-제주권 .map-badge-bg, .map-wrap.active-all .label-제주권 .map-badge-bg { stroke: var(--pastel-peach); fill: rgba(255,170,122,0.3); filter: drop-shadow(0 0 8px rgba(255,170,122,0.9)); }
+.map-wrap.active-제주권 .label-제주권 .map-badge-txt, .map-wrap.active-all .label-제주권 .map-badge-txt { fill: var(--pastel-peach); font-weight:800; }
+
+.s16-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.s16-pills {
+  display: inline-flex;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.s16-tab-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 8px 24px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.s16-tab-btn:hover {
+  color: #fff;
+}
+.s16-tab-btn.active {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+}
+.s16-tab-btn.map-tab.active {
+  background: linear-gradient(135deg, #10b981, #059669);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+.map-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.map-filter-btn .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.map-filter-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+}
+.map-filter-btn.active {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+  color: #fff;
+  box-shadow: 0 0 14px currentColor;
+}
+.store-list-scroll {
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.store-list-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.store-list-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+}
+.store-item-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+.store-item-card:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.22);
+  transform: translateX(4px);
+}
+.store-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.store-name {
+  font-size: 21px;
+  font-weight: 700;
+  color: #fff;
+}
+.store-region-chip {
+  font-size: 14px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  color: #cbd5e1;
+}
+.store-addr {
+  font-size: 16px;
+  color: #94a3b8;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.store-tel {
+  font-size: 15px;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+/* Modal Backdrop */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 20, 0.88);
+  backdrop-filter: blur(14px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-window {
+  width: 1720px;
+  height: 940px;
+  background: linear-gradient(135deg, rgba(23, 31, 56, 0.95), rgba(15, 23, 42, 0.98));
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 28px;
+  box-shadow: 0 25px 60px -15px rgba(0,0,0,0.8), 0 0 40px rgba(59, 130, 246, 0.15);
+  display: flex;
+  flex-direction: column;
+  padding: 34px 44px;
+  position: relative;
+}
+
+
+/* --- ROLLING TIRE ANIMATION & CLOSING STYLES --- */
+.thanks {
+  position: relative;
+  overflow: hidden;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 90px !important;
+}
+.road-track-wrap {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  margin-top: 16px;
+  pointer-events: none;
+  overflow: hidden;
+}
+.road-line {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(217, 182, 111, 0.45) 15%, rgba(56, 189, 248, 0.65) 50%, rgba(217, 182, 111, 0.45) 85%, transparent);
+  box-shadow: 0 0 15px rgba(217, 182, 111, 0.6);
+}
+.road-dashes {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, transparent, transparent 35px, rgba(255, 255, 255, 0.45) 35px, rgba(255, 255, 255, 0.45) 75px);
+  opacity: 0.55;
+  animation: roadMove 1.2s linear infinite;
+}
+@keyframes roadMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-75px); }
+}
+.tire-rolling-unit {
+  position: absolute;
+  bottom: 14px;
+  left: -180px;
+  width: 130px;
+  height: 130px;
+  animation: rollAcross 6.8s linear infinite;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+.tire-rolling-unit:hover {
+  filter: drop-shadow(0 0 20px #ffd54f);
+}
+.tire-shadow {
+  position: absolute;
+  bottom: -6px;
+  left: 5px;
+  width: 120px;
+  height: 12px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 70%);
+  border-radius: 50%;
+}
+.tire-rotator {
+  width: 130px;
+  height: 130px;
+  animation: spinTire 6.8s linear infinite;
+  filter: drop-shadow(0 12px 14px rgba(0,0,0,0.85));
+}
+.tire-trail {
+  position: absolute;
+  bottom: 25px;
+  left: -140px;
+  width: 140px;
+  height: 30px;
+  background: linear-gradient(90deg, transparent, rgba(217, 182, 111, 0.35) 70%, rgba(255, 213, 79, 0.6) 100%);
+  border-radius: 15px;
+  filter: blur(6px);
+  pointer-events: none;
+}
+@keyframes rollAcross {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(2300px); }
+}
+@keyframes spinTire {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(1960deg); }
+}
+.replay-tire-btn {
+  position: absolute;
+  bottom: 24px;
+  right: 48px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(217, 182, 111, 0.5);
+  color: #d9b66f;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: all 0.2s ease;
+}
+.replay-tire-btn:hover {
+  background: rgba(217, 182, 111, 0.2);
+  color: #fff;
+  border-color: #ffd54f;
+  transform: translateY(-2px);
+}
+
 </style>
+  <script src="assets/stores545.js"></script>
+  <script src="assets/korea_map.js"></script>
 </head>
 <body>
 
@@ -312,27 +689,32 @@ const CHG=[35,32,46,36,35,33,38,37,30], REN=[28,28,31,33,38,40,31,26,18];
 const REG=[['세종특별자치시',22323],['충남 천안시',15385],['인천광역시',12645],['대전광역시',1685],['충남 공주시',567],['경북 경주시',416],['경기 시흥시',308],['전북특별자치도',280],['경기 안산시',200],['경기 양주시',184],['전남광주통합특별시',138],['충남 부여군',33]];
 
 /* ============ HELPERS ============ */
-const H=(sec,t,s)=>`<div class="hd rv" style="--i:0"><div class="sec">${sec}</div><div><h2>${t}</h2>${s?`<p>${s}</p>`:''}</div></div><div class="brand"><img src="assets/logo.png" alt=""></div>`;
+const H=(sec,t,s,extra)=>`<div class="hd rv" style="--i:0"><div class="sec">${sec}</div><div><h2>${t}</h2>${s?`<p>${s}</p>`:''}</div></div><div class="brand">${extra||''}<img src="assets/logo.png" alt=""></div>`;
 const photo=(src,cls='')=>`<div class="ph tilt ${cls}"><img src="assets/${src}" alt=""></div>`;
 function combo(){
   const W=1060,Hh=400,l=60,b=46,t=20,mx=50,bw=34,gp=(W-l-20)/9;
   let s=`<svg viewBox="0 0 ${W} ${Hh+b+t}" width="100%">`;
-  for(let v=0;v<=50;v+=10){const y=t+Hh*(1-v/mx);s+=`<line x1="${l}" x2="${W-10}" y1="${y}" y2="${y}" stroke="rgba(255,255,255,.1)"/><text x="${l-12}" y="${y+7}" fill="#a9b3c9" font-size="20" text-anchor="end">${v}</text>`}
+  for(let v=0;v<=50;v+=10){const y=t+Hh*(1-v/mx);s+=`<line x1="${l}" x2="${W-10}" y1="${y}" y2="${y}" stroke="rgba(255,255,255,.1)"/><text x="${l-12}" y="${y+7}" fill="${v===30?'#ff8f96':'#a9b3c9'}" font-size="20" font-weight="${v===30?'700':'400'}" text-anchor="end">${v}</text>`}
   const y30=t+Hh*(1-30/mx);
-  s+=`<line class="dsh" x1="${l}" x2="${W-10}" y1="${y30}" y2="${y30}" stroke="#ff6b73" stroke-width="2.5"/><text x="${W-12}" y="${y30-10}" fill="#ff8f96" font-size="21" text-anchor="end" font-weight="700">관리 목표 월 30건</text>`;
+  s+=`<line class="dsh" x1="${l}" x2="${W-10}" y1="${y30}" y2="${y30}" stroke="#ff6b73" stroke-width="2.2" stroke-dasharray="6 4"/>
+  <g transform="translate(${W-195}, 12)">
+    <rect width="185" height="30" rx="6" fill="rgba(255,107,115,.14)" stroke="#ff6b73" stroke-width="1.2"/>
+    <line x1="12" x2="36" y1="15" y2="15" stroke="#ff6b73" stroke-width="2.5" stroke-dasharray="4 3"/>
+    <text x="44" y="21" fill="#ff8f96" font-size="15" font-weight="700">관리 목표: 월 30건</text>
+  </g>`;
   CHG.forEach((v,i)=>{const x=l+gp*i+gp/2-bw-2,h=Hh*v/mx,hot=[2,6,7].includes(i);
-    s+=`<rect x="${x}" y="${t+Hh-h}" width="${bw}" height="${h}" rx="7" fill="${hot?'#ff6b73':'#d9b66f'}"/><text x="${x+bw/2}" y="${t+Hh-h-8}" fill="${hot?'#ffb3b8':'#f3dca4'}" font-size="20" font-weight="700" text-anchor="middle">${v}</text>`;
+    s+=`<rect x="${x}" y="${t+Hh-h}" width="${bw}" height="${h}" rx="7" fill="${hot?'#ff6b73':'#d9b66f'}"/><text x="${x+bw/2}" y="${t+Hh-h-8}" fill="${hot?'#ffb3b8':'#f3dca4'}" font-size="20" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#161d2d" stroke-width="3" stroke-linejoin="round">${v}</text>`;
     const v2=REN[i],h2=Hh*v2/mx,x2=x+bw+4;
-    s+=`<rect x="${x2}" y="${t+Hh-h2}" width="${bw}" height="${h2}" rx="7" fill="#6aa7e6"/><text x="${x2+bw/2}" y="${t+Hh-h2-8}" fill="#b5d5f5" font-size="20" text-anchor="middle">${v2}</text>`;
+    s+=`<rect x="${x2}" y="${t+Hh-h2}" width="${bw}" height="${h2}" rx="7" fill="#6aa7e6"/><text x="${x2+bw/2}" y="${t+Hh-h2-8}" fill="#b5d5f5" font-size="20" text-anchor="middle" paint-order="stroke" stroke="#161d2d" stroke-width="3" stroke-linejoin="round">${v2}</text>`;
     s+=`<text x="${l+gp*i+gp/2}" y="${t+Hh+34}" fill="#a9b3c9" font-size="22" text-anchor="middle">${MON[i]}</text>`});
   return s+'</svg>';
 }
 const comboSvg=()=>combo().replace('width="100%"','width="100%" style="height:380px"');
 function donut(a,b){const r=100,c=2*Math.PI*r,f=c*a/b;
-  return `<svg viewBox="0 0 260 260" width="300"><circle cx="130" cy="130" r="${r}" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="34"/>
+  return `<svg viewBox="0 0 260 260" width="270"><circle cx="130" cy="130" r="${r}" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="34"/>
   <circle cx="130" cy="130" r="${r}" fill="none" stroke="url(#gd)" stroke-width="34" stroke-linecap="round" stroke-dasharray="0 ${c}" transform="rotate(-90 130 130)" class="dn" data-f="${f}" data-c="${c}"/>
   <defs><linearGradient id="gd"><stop offset="0" stop-color="#f3dca4"/><stop offset="1" stop-color="#b88a2e"/></linearGradient></defs>
-  <text x="130" y="128" text-anchor="middle" fill="#f5f2ea" font-size="60" font-weight="900">${a}</text><text x="130" y="168" text-anchor="middle" fill="#a9b3c9" font-size="26">/ ${b}개 법인</text></svg>`}
+  <text x="130" y="116" text-anchor="middle" fill="#f5f2ea" font-size="54" font-weight="900">${a}</text><text x="130" y="162" text-anchor="middle" fill="#a9b3c9" font-size="22" font-weight="600">/ ${b}개 법인</text></svg>`}
 
 /* ============ SLIDES ============ */
 const SL=[];
@@ -353,18 +735,29 @@ add({id:'team',html:()=>`${H('팀','경영전략본부 부서원 소개','함께
  <div class="team">${TEAM.map((t,i)=>{const ti=TITLES[t.n];return `<div class="tc" data-i="${i}"><div class="no">${String(i+1).padStart(2,'0')}</div>${photo('r'+(i+1)+'.jpg','')}<div><div class="nm">${t.n}</div><div class="ti ${ti?'':'empty'}">${ti||'경영전략본부'}</div></div></div>`}).join('')}
  <div class="tc sum"><div class="lbl">경영전략본부</div><div class="big gold">11명</div></div></div>
 `,
- say:()=>[["먼저 우리 경영전략본부 팀원을 소개드립니다. 왼쪽에서 오른쪽으로 차례대로 인사드리겠습니다."],
+ say:()=>[["먼저 우리 경영전략본부 팀원을 소개해 드리겠습니다."],
   ...TEAM.map((t,i)=>[`${t.n}${TITLES[t.n]?' '+TITLES[t.n]:''}`,()=>teamIn(i)]),
   ["이상 열한 명의 경영전략본부 구성원이, 지금부터 3분기 성과를 보고드리겠습니다.",()=>teamIn(11)]]});
 
 add({cls:'divider',html:()=>`<div class="rn rv" style="--i:0">Ⅰ</div><h2 class="rv" style="--i:1">2026년 3분기<br>업무성과 보고</h2><p class="rv" style="--i:2">한눈에 보는 10대 성과부터 세부 내용까지</p>`,
  say:[["첫 번째 순서는 2026년 3분기 업무성과 보고입니다."]]});
 
-const T10=[['관리법인 현황','22','개 (+2)'],['관리법인 자체기장','17','개 법인 자체 신고'],['소득금액변동통지 승소','25','억 환급 진행'],['원풍약품상사 재고실사','1.8','억 법인세 절감'],['에어프레미아 파견','2','개월 RA 업무 지원'],['좋은타이어 회계 변경','9','개 매장 자동전표'],['농업법인 농지 자경','54,164','평 자경 완료'],['지방세 서면조사','적정','추징세액 없음'],['MMDA·여신금리','595','건 금리 관리 계약 연계'],['위수탁사업계약서','595','건 작성 완료']];
-T10[8]=['MMDA·여신금리','2.5','% 농협 MMDA 금리'];
+const T10=[
+  ['관리법인<br>현황','22','개 (+2)'],
+  ['관리법인<br>자체기장','17','개 법인 자체 신고'],
+  ['소득금액변동통지<br>승소','25','억 환급 진행'],
+  ['원풍약품상사<br>재고실사','1.8','억 법인세 절감'],
+  ['에어프레미아<br>파견','2','개월 RA 업무 지원'],
+  ['좋은타이어<br><span style="letter-spacing:-1px;white-space:nowrap">회계프로그램 변경</span>','9','개 매장 자동전표'],
+  ['농업법인<br>농지 자경','54,164','평 자경 완료'],
+  ['지방세<br>서면조사','적정','추징세액 없음'],
+  ['MMDA ·<br>여신금리','595','건 금리 관리 계약 연계'],
+  ['위수탁<br>사업계약서','595','건 작성 완료']
+];
+T10[8]=['MMDA ·<br>여신금리','2.5','% 농협 MMDA 금리'];
 add({html:()=>`${H('Ⅰ','한눈에 보는 10대 성과','2026년 3분기 경영전략본부')}
  <div class="g5" style="margin-top:6px">${T10.map((c,i)=>`<div class="top10 glass tilt rv" style="--i:${i+1}"><div class="n">${['Ⅰ','Ⅱ','Ⅲ','Ⅳ','Ⅴ','Ⅵ','Ⅶ','Ⅷ','Ⅸ','Ⅹ'][i]}</div><h4>${c[0]}</h4><div class="v">${c[1]}</div><div class="u">${c[2]}</div></div>`).join('')}</div>`,
- say:[["3분기 성과를 열 가지로 요약했습니다."],["관리법인은 22개로 늘었고, 17개 법인은 자체 기장으로 신고를 수행했습니다."],["소득금액변동통지 소송에서는 승소하여 약 25억 원 환급이 진행 중이고, 원풍약품상사 재고실사로 법인세 1억 8천만 원을 절감할 수 있게 되었습니다."],["에어프레미아 파견과 좋은타이어 회계프로그램 연동, 농업법인 농지 자경 54,164평 완료, 지방세 서면조사 적정 결과도 있었습니다."],["마지막으로 MMDA 금리 관리와 위수탁사업계약서 595건 작성까지 완료했습니다. 하나씩 말씀드리겠습니다."]]});
+ say:[["3분기 성과를 열 가지로 요약했습니다."],["관리법인은 22개로 늘었고, 17개 법인은 자체 기장으로 신고를 수행했습니다."],["소득금액변동통지 소송에서는 승소하여 약 25억 원 환급이 진행 중이고, 원풍약품상사 재고실사로 법인세 1억 8천만 원을 절감할 수 있게 되었습니다."],["에어프레미아 파견과 좋은타이어 회계프로그램 변경 및 자동전표 연동, 농업법인 농지 자경 54,164평 완료, 지방세 서면조사 적정 결과도 있었습니다."],["마지막으로 MMDA 금리 관리와 위수탁사업계약서 595건 작성까지 완료했습니다. 하나씩 말씀드리겠습니다."]]});
 
 add({html:()=>`${H('Ⅰ','2026년 3분기 관계사 관리법인 현황','체계적인 업무 분장으로 증가한 법인에 효율적으로 대응')}
  <div class="row" style="align-items:center;margin-bottom:34px">
@@ -377,48 +770,56 @@ add({html:()=>`${H('Ⅰ','2026년 3분기 관계사 관리법인 현황','체계
 
 add({html:()=>`${H('Ⅱ','관리법인 자체 기장','자금 · 세무 · 회계 · 총무 · 인사 자체 장부 → 빠르고 정확한 의사결정')}
  <div class="row" style="gap:30px">
- <div class="glass rv" style="--i:1;padding:34px 36px;width:640px"><div class="tag">세무회계 · 부가가치세</div>
+ <div class="glass rv" style="--i:1;padding:34px 36px;width:690px"><div class="tag">세무회계 · 부가가치세</div>
   <div style="display:flex;align-items:center;gap:20px;margin:10px 0">${donut(17,22)}<div><div class="lbl">22개 중</div><div style="font-size:34px;font-weight:700;margin:6px 0">5개 법인 제외</div><div class="chip g">17개 자체 신고·납부</div></div></div></div>
- <div class="glass rv" style="--i:2;padding:34px 36px;flex:1"><div class="tag">세금업무 · 주민세 사업소분</div>
-  <div class="row" style="align-items:center;margin-top:18px;gap:22px"><div class="big gold" style="font-size:130px"><span class="cnt" data-to="539">0</span></div><div><div style="font-size:34px;font-weight:700">개 지자체</div><div class="lbl" style="margin-top:10px">타이어뱅크 사업소분<br>직접 신고·납부 완료</div></div></div>
+ <div class="glass rv" style="--i:2;padding:34px 36px;flex:1"><div class="tag">세금업무 · 사업소분 주민세 · 법인세분 지방소득세</div>
+  <div style="display:flex;flex-direction:column;gap:12px;margin-top:14px">
+   <div style="display:flex;align-items:baseline;gap:12px">
+    <span class="big gold" style="font-size:115px;line-height:1"><span class="cnt" data-to="539">0</span></span>
+    <span style="font-size:34px;font-weight:700;color:#fff">개 지자체</span>
+   </div>
+   <div class="lbl" style="font-size:22px;line-height:1.45;color:#dfe5f3">
+    타이어뱅크 <b class="gold">사업소분 주민세 · 법인세분 지방소득세</b><br>직접 신고·납부 완료
+   </div>
+  </div>
   <div class="chip g" style="margin-top:22px">외부 위탁 없이 자체 수행</div></div></div>
  <div class="tag rv" style="--i:3;margin:34px 0 14px">재무회계 · 기업가치 극대화</div>
  <div class="flow">
-  <div class="fb glass rv" style="--i:3"><div class="row" style="align-items:center"><div class="num">1</div><h4 style="margin:0">월간 손익계산서</h4></div><p style="margin-top:12px">매월 15일 보고로<br>경영자 의사결정 기여</p></div><div class="fa">➜</div>
-  <div class="fb glass rv" style="--i:4"><div class="row" style="align-items:center"><div class="num">2</div><h4 style="margin:0">미수채권 관리</h4></div><p style="margin-top:12px">회수 기일 검토로<br>대손채권 방지</p></div><div class="fa">➜</div>
-  <div class="fb glass rv" style="--i:5"><div class="row" style="align-items:center"><div class="num">3</div><h4 style="margin:0">손익분기점 분석</h4></div><p style="margin-top:12px">분석을 통한<br>원가 통제</p></div></div>`,
- say:[["두 번째는 관리법인 자체 기장입니다. 자금, 세무, 회계, 총무, 인사까지 자체 장부를 운영하여 빠르고 정확한 의사결정을 돕고 있습니다."],["세무 분야에서는 관계사 22개 법인 중 5개 법인을 제외한 17개 법인의 부가가치세를 자체적으로 신고하고 납부했습니다.",()=>runDonut()],["또한 타이어뱅크의 539개 지자체 사업소분 주민세도 직접 신고하고 납부를 완료했습니다.",()=>runCnt()],["재무회계 측면에서는 매월 15일 월간 손익계산서를 보고하고, 매출채권 회수 기일을 검토해 대손채권을 예방하며, 손익분기점 분석으로 원가를 통제하고 있습니다."]]});
+  <div class="fb glass rv" style="--i:3"><div class="row" style="align-items:center"><div class="num">1</div><h4 style="margin:0">월간 손익계산서</h4></div><p style="margin-top:14px;font-size:22px;white-space:nowrap;letter-spacing:-0.4px">매월 15일 보고로 합리적인 의사결정에 기여</p></div><div class="fa">➜</div>
+  <div class="fb glass rv" style="--i:4"><div class="row" style="align-items:center"><div class="num">2</div><h4 style="margin:0">미수채권 관리</h4></div><p style="margin-top:14px;font-size:22px;white-space:nowrap;letter-spacing:-0.4px">회수기일 검토로 대손채권 방지</p></div><div class="fa">➜</div>
+  <div class="fb glass rv" style="--i:5"><div class="row" style="align-items:center"><div class="num">3</div><h4 style="margin:0">손익분기점 분석</h4></div><p style="margin-top:14px;font-size:22px;white-space:nowrap;letter-spacing:-0.4px">분석을 통한 원가 통제</p></div></div>`,
+ say:[["두 번째는 관리법인 자체 기장입니다. 자금, 세무, 회계, 총무, 인사까지 자체 장부를 운영하여 빠르고 정확한 의사결정을 돕고 있습니다."],["세무 분야에서는 관계사 22개 법인 중 5개 법인을 제외한 17개 법인의 부가가치세를 자체적으로 신고하고 납부했습니다.",()=>runDonut()],["또한 타이어뱅크의 539개 지자체 사업소분 주민세와 법인세분 지방소득세도 직접 신고하고 납부를 완료했습니다.",()=>runCnt()],["재무회계 측면에서는 매월 15일 월간 손익계산서를 보고해 합리적인 의사결정에 기여하고, 회수기일 검토로 대손채권을 방지하며, 손익분기점 분석을 통해 원가를 통제하고 있습니다."]]});
 
 add({html:()=>`${H('Ⅲ','소득금액변동통지 승소','2013년 귀속 · 대전지방법원 판결 타이어뱅크 승소')}
  <div class="tl rv" style="--i:1;margin-top:20px">
   <div class="tn"><div class="dot">1</div><div class="dt">2016.11.28</div><div class="tt">세무조사 결과 통지</div><div class="st">30일 과세전적부심사 가능했으나<br>3일 만에 1차 변동통지</div></div>
-  <div class="tn"><div class="dot">2</div><div class="dt">2024.03.26</div><div class="tt">서대전세무서 스스로 취소</div><div class="st">약 72억 → 69억원으로<br>줄여 예고</div></div>
+  <div class="tn"><div class="dot">2</div><div class="dt">2024.03.26</div><div class="tt">서대전세무서 스스로 취소</div><div class="st">약 72억 → 69억 원으로<br>줄여 예고</div></div>
   <div class="tn"><div class="dot">3</div><div class="dt">2024.03.27</div><div class="tt">소득금액 변경통지</div><div class="st">30일 반론 기회 미부여<br>→ 위법 (소송 대상)</div></div>
   <div class="tn win"><div class="dot">4</div><div class="dt">2026.08.27</div><div class="tt">대전지법 판결 승소</div><div class="st">2024.03.27 통지 무효</div></div></div>
  <div class="row" style="margin-top:46px;align-items:stretch">
   <div class="glass rv" style="--i:3;padding:34px 44px;flex:1;display:flex;align-items:center;gap:40px"><div class="stamp">승 소</div><div><div class="lbl">원천징수 예상세액 환급</div><div class="big gold" style="font-size:130px">약 <span class="cnt" data-to="25">0</span><small style="font-size:56px">억</small></div></div></div>
   <div class="glass rv" style="--i:4;padding:34px 40px;width:640px"><div class="tag">핵심 쟁점</div><ul class="pts" style="margin-top:16px"><li>반론 기회(30일) 미부여</li><li>절차 위반으로 통지 무효 확정</li></ul></div></div>`,
- say:[["세 번째, 소득금액변동통지 소송 승소입니다."],["2016년 11월 세무조사 결과가 통지된 뒤, 30일간 과세전적부심사를 청구할 수 있었음에도 불과 3일 만에 1차 소득금액변동통지가 이루어졌습니다."],["2024년 3월 26일 서대전세무서는 2013년도 통지 약 72억 원을 스스로 취소하고 69억 원으로 줄여 예고했습니다. 다음날 소득금액 변경통지를 했지만 30일의 반론 기회를 주지 않아 위법하다고 보고 소송을 제기했습니다."],["그 결과 2026년 8월 27일 대전지방법원은 타이어뱅크 승소로 판결했고, 해당 통지는 무효가 되어 원천징수 예상세액 약 25억 원이 환급될 예정입니다.",()=>runCnt()]]});
+ say:[["세 번째, 소득금액변동통지 소송 승소입니다."],["2016년 11월 세무조사 결과가 통지된 뒤, 30일간 과세전적부심사를 청구할 수 있었음에도 불과 3일 만에 1차 소득금액변동통지가 이루어졌습니다."],["2024년 3월 26일 서대전세무서는 2013년도 통지 약 72억 원을 스스로 취소하고 69억 원으로 감액하여 예고했습니다. 다음 날 소득금액 변경통지를 했지만 30일의 반론 기회를 주지 않아 위법하다고 보고 소송을 제기했습니다."],["그 결과 2026년 8월 27일 대전지방법원은 타이어뱅크 승소로 판결했고, 해당 통지는 무효가 되어 원천징수 예상세액 약 25억 원이 환급될 예정입니다.",()=>runCnt()]]});
 
 add({html:()=>`${H('Ⅳ','원풍약품상사 재고 실사 결과','전산 재고와 실재고 일치 확인')}
  <div class="row" style="gap:44px;align-items:flex-start">
   <div class="col grow" style="gap:24px">
    <div class="glass rv" style="--i:1;padding:30px 36px"><div class="tag">재고 실사 개요</div><ul class="pts" style="margin-top:16px">
-    <li><b class="gold">일자</b> 2026년 9월 28일</li><li><b class="gold">실사자</b> 경영전략본부 박성준·최기윤·정현우<br><span class="mute" style="font-size:26px">+ 원풍약품상사 손광식·유경천·진성오</span></li><li><b class="gold">중점</b> 전산 재고와 실사 재고 일치 확인</li></ul></div>
+    <li><b class="gold">일자</b> 2026년 9월 28일</li><li><b class="gold">실사자</b> 경영전략본부 정현우·박성준·최기윤<br><span class="mute" style="font-size:26px">+ 원풍약품상사 손광식·유경천·진성오</span></li><li><b class="gold">중점</b> 전산 재고와 실사 재고 일치 확인</li></ul></div>
    <div class="flow rv" style="--i:2"><div class="fb glass"><div class="tag">폐기 재고 예상</div><div class="big red" style="font-size:80px;margin-top:10px">7.5억</div></div><div class="fa">➜</div><div class="fb glass" style="background:linear-gradient(135deg,rgba(217,182,111,.25),rgba(217,182,111,.06))"><div class="tag">법인세 절감 (24.2%)</div><div class="big gold" style="font-size:80px;margin-top:10px">1.8억</div></div></div>
    <div class="chip g rv" style="--i:3;align-self:flex-start">※ 2026년 ERP 개발 완료 후 도입</div></div>
   <div class="rv" style="--i:2;width:820px">${photo('inventory.jpg','flat')}<div class="cap">재고 실사 결과표</div></div></div>`,
- say:[["네 번째는 원풍약품상사 재고 실사입니다. 지난 9월 28일 경영전략본부 박성준, 최기윤, 정현우 직원과 원풍약품상사 직원이 함께 전산 재고와 실사 재고의 일치 여부를 확인했습니다."],["유통기한이 지난 폐기 재고는 예상 금액 7억 5천만 원이며, 이를 결산에 반영하면 법인세 24.2퍼센트, 약 1억 8천만 원을 절감할 수 있습니다."],["2026년 ERP 개발이 완료되면 도입하여 전산 재고와 실재고의 일치를 지속적으로 확보하겠습니다."]]});
+ say:[["네 번째는 원풍약품상사 재고 실사입니다. 지난 9월 28일 경영전략본부 정현우, 박성준, 최기윤 직원과 원풍약품상사 직원이 함께 전산 재고와 실사 재고의 일치 여부를 확인했습니다."],["유통기한이 지난 폐기 재고는 예상 금액 7억 5천만 원이며, 이를 결산에 반영하면 법인세 24.2퍼센트, 약 1억 8천만 원을 절감할 수 있습니다."],["2026년 ERP 개발이 완료되면 도입하여 전산 재고와 실재고의 일치를 지속적으로 확보하겠습니다."]]});
 
 add({html:()=>`${H('Ⅴ','관계사 에어프레미아㈜ 파견 근무','수입심사(RA)파트 결원으로 인한 행정업무 지원')}
  <div class="glass rv" style="--i:1;padding:36px 50px;margin-bottom:34px"><div class="row" style="align-items:center;gap:30px">
   <div style="text-align:center"><div class="lbl">파견자</div><div style="font-size:48px;font-weight:900;margin-top:6px">박성준</div></div>
-  <div class="grow"><div style="display:flex;justify-content:space-between;font-size:34px;font-weight:700"><span class="gold">2026. 05. 18</span><span class="gold">2026. 07. 16</span></div>
+  <div class="grow"><div style="display:flex;justify-content:space-between;align-items:flex-end"><span class="gold" style="font-size:34px;font-weight:700">2026. 05. 18</span><div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end"><img src="assets/airpremia_white.svg" alt="AIR PREMIA" style="height:32px;margin-bottom:8px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.5))"><span class="gold" style="font-size:34px;font-weight:700">2026. 07. 16</span></div></div>
   <div style="height:18px;border-radius:18px;margin:14px 0;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 0 30px rgba(217,182,111,.5);position:relative"></div><div class="lbl" style="text-align:center">약 2개월 · RA 행정업무 지원</div></div></div></div>
  <div class="tag rv" style="--i:2;margin-bottom:14px">수행 업무 결과</div>
- <div class="flow">${['수입심사 업무 Process 숙지','거래처 정산 이상 사례 확인','프로모션 오남용 확인','NF 티켓 운영 검토'].map((t,i)=>`<div class="fb glass rv" style="--i:${i+3}"><div class="num" style="margin-bottom:16px">${i+1}</div><h4>${t}</h4></div>${i<3?'<div class="fa" style="width:36px;font-size:30px">➜</div>':''}`).join('')}</div>
+ <div class="flow">${['수입심사 업무<br>Process 숙지','거래처 정산<br>이상 사례 확인','프로모션<br>오남용 확인','NF 티켓<br>운영 검토'].map((t,i)=>`<div class="fb glass rv" style="--i:${i+3}"><div class="num" style="margin-bottom:16px">${i+1}</div><h4>${t}</h4></div>${i<3?'<div class="fa" style="width:36px;font-size:30px">➜</div>':''}`).join('')}</div>
  <div class="glass rv" style="--i:7;margin-top:30px;padding:24px 36px;display:flex;gap:22px;align-items:center"><div class="chip g">결과</div><div style="font-size:30px">RA파트 운영 현황 파악 → <b class="gold">개선 방안 도출</b></div></div>`,
- say:[["다섯 번째, 관계사 에어프레미아 파견 근무입니다."],["수입심사 파트 결원에 따라 박성준 직원이 2026년 5월 18일부터 7월 16일까지 약 두 달간 행정업무를 지원했습니다."],["수입심사 업무 프로세스를 숙지하고, 거래처 정산 이상 사례와 프로모션 오남용, NF 티켓 운영 현황을 확인했습니다."],["이를 통해 에어프레미아 수입심사 파트의 운영 현황을 파악하고 개선 방안을 도출했습니다."]]});
+ say:[["다섯 번째, 관계사 에어프레미아 파견 근무입니다."],["수입심사 파트 결원에 따라 박성준 직원이 2026년 5월 18일부터 7월 16일까지 약 두 달간 행정업무를 지원했습니다."],["수입심사 업무 프로세스를 면밀히 숙지하고, 거래처 정산 이상 사례와 프로모션 오남용, NF 티켓 운영 현황을 확인했습니다."],["이를 통해 에어프레미아 수입심사 파트의 운영 현황을 파악하고 개선 방안을 도출했습니다."]]});
 
 add({html:()=>`${H('Ⅵ','좋은타이어 회계프로그램 변경 및 자동전표 연동','수기 엑셀 관리에서 ERP 기반 관리로')}
  <div class="flow" style="align-items:stretch">
@@ -428,18 +829,18 @@ add({html:()=>`${H('Ⅵ','좋은타이어 회계프로그램 변경 및 자동�
  <div class="row" style="margin-top:34px;gap:26px">
   <div class="glass rv" style="--i:4;flex:1;padding:30px 36px"><div class="tag">도입 시 기대 효과</div><ul class="pts" style="margin-top:14px"><li>수기 관리 항목 전산화</li><li>업무 시간 단축</li><li>판매관리 · 매장별 재고 정확성 검증</li></ul></div>
   <div class="glass rv" style="--i:5;width:560px;padding:30px 36px;text-align:center"><div class="lbl">매장 증가 대비</div><div class="big gold" style="font-size:100px;margin:10px 0">9<small style="font-size:40px">개 매장</small></div><div class="lbl">추후 확장 가능한 시스템</div></div></div>`,
- say:[["여섯 번째, 좋은타이어 회계프로그램 변경과 자동전표 연동입니다."],["현재 이천점, 공촌점 등 9개 매장이 운영 중이며, 매출과 재고를 모두 수기 엑셀로 관리하고 있었습니다."],["매장 수가 늘어날 것에 대비하여 제닉스X 회계프로그램을 도입하고 자동전표 연동을 완료했으며, 이에 맞춘 판매 ERP 설계도 마쳤습니다."],["판매 ERP가 도입되면 수기 항목이 전산화되어 업무 시간이 줄고, 판매관리와 매장별 재고의 정확성을 검증할 수 있습니다."]]});
+ say:[["여섯 번째, 좋은타이어 회계 프로그램 변경과 자동전표 연동입니다."],["현재 이천점, 공촌점 등 9개 매장이 운영 중이며, 매출과 재고를 모두 수기 엑셀로 관리하고 있었습니다."],["매장 수가 늘어날 것에 대비하여 제닉스X 회계 프로그램을 도입하고 자동전표 연동을 완료했으며, 이에 맞춘 판매 ERP 설계도 마쳤습니다."],["판매 ERP가 도입되면 수기 항목이 전산화되어 업무 시간이 줄고, 판매관리와 매장별 재고의 정확성을 검증할 수 있습니다."]]});
 
 add({html:()=>`${H('Ⅶ','농업법인 농지 자경','정부 최초 ‘전국 농지 전수조사’ 대응')}
  <div class="tl" style="margin-top:20px">
   <div class="tn rv" style="--i:1"><div class="dot">1</div><div class="dt">2026. 2. 24</div><div class="tt">전국 농지 전수조사 착수</div><div class="st">대통령 국무회의 지시<br>투기 농지 매각명령 집행 검토</div></div>
-  <div class="tn rv" style="--i:2"><div class="dot">2</div><div class="dt">2026. 5. 7</div><div class="tt">농지법 개정안 국회 통과</div><div class="st">전수조사 실효성·<br>처분명령 강화</div></div>
-  <div class="tn rv" style="--i:3"><div class="dot">3</div><div class="dt">2026. 5 ~ 2027</div><div class="tt">2단계 전수조사 진행</div><div class="st">’26년: 1996년 이후 취득 농지<br>’27년: 그 이전 취득 농지</div></div>
+  <div class="tn rv" style="--i:2"><div class="dot">2</div><div class="dt">2026. 5. 7</div><div class="tt">농지법 개정안 국회 통과</div><div class="st">전수조사 실효성 및<br>처분명령 강화</div></div>
+  <div class="tn rv" style="--i:3"><div class="dot">3</div><div class="dt">2026. 5 ~ 2027</div><div class="tt">2단계 전수조사 진행</div><div class="st">2026년: 1996년 이후 취득 농지<br>2027년: 1996년 이전 취득 농지</div></div>
   <div class="tn win rv" style="--i:4"><div class="dot">✔</div><div class="dt">당사 대응</div><div class="tt">12개 지역 자경 완료</div><div class="st">농작물 매출 발생</div></div></div>
  <div class="glass rv" style="--i:5;margin-top:52px;padding:34px 50px;display:flex;align-items:center;justify-content:space-around;gap:30px">
   <div style="text-align:center"><div class="lbl">자경 지역</div><div class="big gold" style="font-size:110px"><span class="cnt" data-to="12">0</span><small style="font-size:40px">곳</small></div></div>
   <div class="gold" style="font-size:60px">+</div>
-  <div style="text-align:center"><div class="lbl">총 자경면적</div><div class="big gold" style="font-size:110px"><span class="cnt" data-to="54164">0</span><small style="font-size:40px">평</small></div><div class="lbl">179,079㎡</div></div></div>`,
+  <div style="text-align:center"><div class="lbl">총 자경면적</div><div class="big gold" style="font-size:96px;letter-spacing:0"><span class="cnt" data-to="54164">0</span><small style="font-size:38px;margin-left:6px">평</small></div><div class="lbl">179,079㎡</div></div></div>`,
  say:[["일곱 번째는 농업법인 농지 자경입니다."],["올해 2월 24일 정부가 정부 수립 후 첫 전국 농지 전수조사에 착수했고, 5월 7일에는 처분명령을 강화하는 농지법 개정안이 국회를 통과했습니다."],["올해는 1996년 이후 취득 농지, 내년에는 그 이전 취득 농지를 대상으로 2단계 전수조사가 진행됩니다."],["이에 대응하여 당사는 12개 지역, 총 54,164평의 농지에 대한 자경을 완료했고 농작물 매출도 발생했습니다.",()=>runCnt()]]});
 
 add({html:()=>`${H('Ⅶ','농지 12개 지역 자경 완료','지역별 자경 면적 (단위: 평)')}
@@ -451,16 +852,34 @@ add({html:()=>`${H('Ⅶ','농지 12개 지역 자경 완료','지역별 자경 �
 add({html:()=>`${H('Ⅶ','농지 자경 전 · 후 사진','같은 장소, 달라진 모습')}
  <div class="tabs rv" style="--i:1">${['세종특별시','대전광역시','전북특별자치도'].map((t,i)=>`<button class="tab ${i?'':'on'}" data-r="${i}">${t}</button>`).join('')}</div>
  <div class="ba rv" style="--i:2"><div class="side b"><span class="tg">자경 전</span>${photo('sejong_before.jpg')}</div><div class="mid">➜</div><div class="side a"><span class="tg">자경 후</span>${photo('sejong_after.jpg')}</div></div>`,
- say:[["농지 자경 전과 후 사진을 보시겠습니다. 먼저 세종특별시입니다.",()=>baSet(0)],["잡초가 무성하던 비탈 농지에 묘목을 심어 정비했습니다."],["다음은 대전광역시입니다.",()=>baSet(1)],["풀과 마른 수풀로 덮여 있던 땅에 멀칭 작업을 하여 농작물을 재배할 수 있게 되었습니다."],["마지막으로 전북특별자치도입니다.",()=>baSet(2)],["방치된 농지를 정비하고 비닐 멀칭 후 작물을 식재하여 자경 요건을 갖췄습니다."]]});
+ say:[["농지 자경 전과 후 사진을 보시겠습니다. 먼저 세종특별자치시입니다.",()=>baSet(0)],["잡초가 무성하던 비탈 농지에 묘목을 심어 정비했습니다."],["다음은 대전광역시입니다.",()=>baSet(1)],["풀과 마른 수풀로 덮여 있던 땅에 멀칭 작업을 하여 농작물을 재배할 수 있게 되었습니다."],["마지막으로 전북특별자치도입니다.",()=>baSet(2)],["방치된 농지를 정비하고 비닐 멀칭 후 작물을 식재하여 자경 요건을 갖췄습니다."]]});
 
 add({html:()=>`${H('Ⅷ','지방세 서면조사 “적정”','직원들의 탁월한 직무 능력으로 평소 세무 신고의 정확성 입증')}
- <div class="row" style="gap:36px;align-items:flex-start">
-  <div class="col grow" style="align-items:center;text-align:center"><div class="chip g rv" style="--i:1;font-size:30px">춘천시청 · 5개년 (2021~2025)</div>
-   <div class="rv" style="--i:2;width:640px;margin-top:20px">${photo('chuncheon.jpg','flat')}</div><div class="cap rv" style="--i:2">춘천시 소재 5개 매장</div></div>
-  <div class="col" style="align-self:center;align-items:center;gap:26px"><div class="stamp rv" style="--i:4">적 정</div><div class="chip r rv" style="--i:5">추징세액 없음</div></div>
-  <div class="col grow" style="align-items:center;text-align:center"><div class="chip g rv" style="--i:1;font-size:30px">전주시청 · 4개년 (2022~2025)</div>
-   <div class="rv" style="--i:2;width:520px;margin-top:20px">${photo('jeonju.jpg','flat')}</div><div class="cap rv" style="--i:2">전주시 소재 11개 매장</div></div></div>`,
- say:[["여덟 번째, 지방세 서면조사 결과입니다."],["춘천시청의 2021년부터 2025년까지 5개 연도, 춘천시 소재 5개 매장에 대한 조사에 대응했습니다."],["전주시청은 2022년부터 2025년까지 4개 연도, 전주시 소재 11개 매장이 대상이었습니다."],["두 곳 모두 추징세액 없이 적정으로 통지받았습니다. 직원들의 탁월한 직무 능력으로 평소 세무 신고가 정확했음을 외부 조사로 확인했습니다."]]});
+ <div class="row" style="gap:40px;align-items:stretch;justify-content:center">
+  <!-- Left: 춘천시청 (추징세액 없음 강조) -->
+  <div class="col grow glass rv" style="--i:1;align-items:center;text-align:center;padding:26px 28px;border-radius:24px;border:1px solid rgba(255,107,115,.35);background:rgba(255,255,255,.03)">
+   <div class="chip g" style="font-size:28px">춘천시청 · 5개년 (2021~2025)</div>
+   <div class="rv" style="--i:2;width:640px;margin-top:16px">${photo('chuncheon.jpg','flat')}</div>
+   <div style="margin:16px 0 8px">
+    <span class="stamp rv" style="--i:3;font-size:46px;color:#ff6b73;border:5px solid #ff6b73;border-radius:16px;padding:6px 36px;letter-spacing:4px;box-shadow:0 0 28px rgba(255,107,115,.4);background:rgba(255,107,115,.12);transform:rotate(-3deg);display:inline-block">추징세액 없음</span>
+   </div>
+   <div class="cap rv" style="--i:3;font-size:24px;margin-top:4px">춘천시 소재 5개 매장</div>
+  </div>
+
+  <!-- Divider -->
+  <div style="width:1px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.18),transparent);margin:30px 0"></div>
+
+  <!-- Right: 전주시청 (적정 강조) -->
+  <div class="col grow glass rv" style="--i:2;align-items:center;text-align:center;padding:26px 28px;border-radius:24px;border:1px solid rgba(45,245,178,.35);background:rgba(255,255,255,.03)">
+   <div class="chip g" style="font-size:28px">전주시청 · 4개년 (2022~2025)</div>
+   <div class="rv" style="--i:2;width:640px;margin-top:16px">${photo('jeonju.jpg','flat')}</div>
+   <div style="margin:16px 0 8px">
+    <span class="stamp rv" style="--i:4;font-size:52px;color:#2df5b2;border:5px solid #2df5b2;border-radius:16px;padding:6px 46px;letter-spacing:6px;box-shadow:0 0 28px rgba(45,245,178,.4);background:rgba(45,245,178,.12);transform:rotate(-3deg);display:inline-block">적 정</span>
+   </div>
+   <div class="cap rv" style="--i:4;font-size:24px;margin-top:4px">전주시 소재 11개 매장</div>
+  </div>
+ </div>`,
+ say:[["여덟 번째, 지방세 서면조사 결과입니다."],["춘천시청의 2021년부터 2025년까지 5개 연도, 춘천시 소재 5개 매장에 대한 조사에 대응했습니다."],["전주시청은 2022년부터 2025년까지 4개 연도, 전주시 소재 11개 매장이 대상이었습니다."],["춘천시청에서는 추징세액 없음으로 통지받았고, 전주시청에서는 적정으로 통지받았습니다. 직원들의 탁월한 직무 능력으로 평소 세무 신고가 정확했음을 외부 조사로 명확히 입증했습니다."]]});
 
 add({html:()=>`${H('Ⅸ','MMDA 이자율 및 여신금리 관리','이자수익의 극대화 · 이자비용의 최소화')}
  <div class="row" style="gap:36px;align-items:stretch">
@@ -472,17 +891,84 @@ add({html:()=>`${H('Ⅸ','MMDA 이자율 및 여신금리 관리','이자수익�
    <p style="font-size:27px;color:#dfe5f3;margin:12px 0 26px;line-height:1.5">중앙은행 기준금리 인상 → 여신 금리 상승<br>지속 모니터링 후 <b class="gold">상환 또는 연장</b></p>
    <div class="bars"><div class="bar b3" style="--w:100%"><span>기준금리</span><div class="tk"><i></i></div><span class="v" style="color:#ff8f96">3.0%</span></div></div>
    <div class="chip r" style="margin-top:26px">이자비용 최소화</div></div></div>`,
- say:[["아홉 번째, MMDA 이자율과 여신 금리 관리입니다."],["매월 관계 금융기관의 MMDA 이자율을 확인하여 예치 금융기관을 정하고 있으며, 10월 현재 농협은행 2.5퍼센트, 우리은행 2.3퍼센트입니다."],["또한 기준금리 인상으로 여신 금리가 상승한 만큼, 금리를 지속 확인하여 상환 또는 연장을 진행하고 있습니다. 현재 기준금리는 3.0퍼센트입니다."],["이를 통해 이자수익은 극대화하고, 이자비용은 최소화하고 있습니다."]]});
+ say:[["아홉 번째, MMDA 이자율과 여신 금리 관리입니다."],["매월 관계 금융기관의 MMDA 이자율을 확인하여 예치 금융기관을 정하고 있으며, 10월 현재 농협은행 2.5퍼센트, 우리은행 2.3퍼센트입니다."],["또한 기준금리 인상으로 여신 금리가 상승한 만큼, 금리를 지속적으로 모니터링하여 상환 또는 연장을 진행하고 있습니다. 현재 기준금리는 3.0퍼센트입니다."],["이를 통해 이자수익은 극대화하고, 이자비용은 최소화하고 있습니다."]]});
 
 add({html:()=>`${H('Ⅹ','위수탁사업계약서 595건 작성 완료','1~9월 월별 계약 체결 추이')}
- <div class="kpis" style="margin-bottom:26px">
-  <div class="kpi glass rv" style="--i:1"><div class="k">계약서 작성 건수</div><div class="n gold"><span class="cnt" data-to="595">0</span><small>건</small></div><div class="s">전년 동기 547건 · +8.8%</div></div>
-  <div class="kpi glass rv" style="--i:2"><div class="k">신규·변동 매장</div><div class="n"><span class="cnt" data-to="322">0</span><small>건</small></div><div class="s">월평균 35.8건</div></div>
-  <div class="kpi glass rv" style="--i:3"><div class="k">재계약 매장</div><div class="n blue"><span class="cnt" data-to="273">0</span><small>건</small></div><div class="s">월평균 30.3건</div></div>
-  <div class="kpi glass rv" style="--i:4"><div class="k">9월말 매장 수</div><div class="n"><span class="cnt" data-to="545">0</span><small>개</small></div><div class="s">연초 대비 +25개</div></div></div>
- <div class="row" style="gap:30px;align-items:center"><div class="glass grow rv" style="--i:5;padding:18px 30px">${comboSvg()}<div class="legend" style="justify-content:center"><span><i style="background:#d9b66f"></i>변동 매장</span><span><i style="background:#ff6b73"></i>과다 (3·7·8월)</span><span><i style="background:#6aa7e6"></i>재계약</span></div></div>
- <div class="glass rv" style="--i:6;width:470px;padding:30px 34px"><div class="tag">주요 사항</div><ul class="pts" style="margin-top:14px"><li style="font-size:26px">1~9월 595건, 전년 대비 48건 증가</li><li style="font-size:26px">신규 26개 · 폐점 1개 → 25개 증가</li><li style="font-size:26px">3·7·8월 변동 과다<br><b class="red">월 30개 이내 관리 필요</b></li></ul></div></div>`,
- say:[["열 번째, 위수탁사업계약서 작성 현황입니다."],["1월부터 9월까지 총 595건을 작성했고, 이는 전년 동기 547건보다 48건, 8.8퍼센트 증가한 수치입니다.",()=>runCnt()],["신규 및 사업장 변경이 322건, 재계약이 273건이며, 9월 말 기준 매장은 545개로 연초보다 25개 늘었습니다."],["월평균 35개 매장에서 이동과 계약 해지가 발생하고 있으며, 특히 3월, 7월, 8월이 많았습니다. 앞으로 월 30개 이내로 관리가 필요합니다."]]});
+ <div class="kpis" style="margin-bottom:20px">
+  <div class="kpi glass rv" style="--i:1"><div class="k">계약서 작성 건수</div><div class="n gold"><span class="cnt" data-to="595">0</span><small>건</small></div><div class="s">전년 동기 547건 · +8.8%</div>
+   <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1);font-size:18px;color:#c9d7ec;line-height:1.4">신규·변동 322건<br>재계약 273건</div></div>
+  <div class="kpi glass rv" style="--i:2"><div class="k">신규·변동 매장</div><div class="n"><span class="cnt" data-to="322">0</span><small>건</small></div><div class="s">월평균 35.8건</div>
+   <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1);font-size:18px;color:#c9d7ec;line-height:1.4">신규 입점 26개<br>명의·조건변경 296건</div></div>
+  <div class="kpi glass rv" style="--i:3"><div class="k">재계약 매장</div><div class="n blue"><span class="cnt" data-to="273">0</span><small>건</small></div><div class="s">월평균 30.3건</div>
+   <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1);font-size:18px;color:#c9d7ec;line-height:1.4">기존 가맹 계약<br>적기 갱신율 100%</div></div>
+  <div class="kpi glass rv" style="--i:4;cursor:pointer;position:relative" onclick="switchSlide16Tab('map')" title="클릭하여 대한민국 지도 및 지점 목록 보기">
+   <div class="k">9월말 매장 수</div><div class="n"><span class="cnt" data-to="545">0</span><small>개</small></div><div class="s">연초 대비 +25개</div>
+   <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:repeat(3,1fr);gap:4px 8px;font-size:15px;color:#c9d7ec;line-height:1.35;white-space:nowrap">
+    <span onclick="event.stopPropagation();switchSlide16Tab('map');selectMapRegion('수도권');" style="cursor:pointer;padding:1px 3px;border-radius:4px" onmouseover="this.style.color='var(--pastel-mint)'" onmouseout="this.style.color=''">수도권 <b style="color:var(--pastel-mint)">190</b></span>
+    <span onclick="event.stopPropagation();switchSlide16Tab('map');selectMapRegion('영남권');" style="cursor:pointer;padding:1px 3px;border-radius:4px" onmouseover="this.style.color='var(--pastel-pink)'" onmouseout="this.style.color=''">영남권 <b style="color:var(--pastel-pink)">155</b></span>
+    <span onclick="event.stopPropagation();switchSlide16Tab('map');selectMapRegion('충청권');" style="cursor:pointer;padding:1px 3px;border-radius:4px" onmouseover="this.style.color='var(--pastel-lemon)'" onmouseout="this.style.color=''">충청권 <b style="color:var(--pastel-lemon)">97</b></span>
+    <span onclick="event.stopPropagation();switchSlide16Tab('map');selectMapRegion('호남권');" style="cursor:pointer;padding:1px 3px;border-radius:4px" onmouseover="this.style.color='var(--pastel-cyan)'" onmouseout="this.style.color=''">호남권 <b style="color:var(--pastel-cyan)">73</b></span>
+    <span onclick="event.stopPropagation();switchSlide16Tab('map');selectMapRegion('강원권');" style="cursor:pointer;padding:1px 3px;border-radius:4px" onmouseover="this.style.color='var(--pastel-purple)'" onmouseout="this.style.color=''">강원권 <b style="color:var(--pastel-purple)">23</b></span>
+    <span onclick="event.stopPropagation();switchSlide16Tab('map');selectMapRegion('제주권');" style="cursor:pointer;padding:1px 3px;border-radius:4px" onmouseover="this.style.color='var(--pastel-peach)'" onmouseout="this.style.color=''">제주권 <b style="color:var(--pastel-peach)">7</b></span>
+   </div>
+   <div style="margin-top:6px;padding:4px 8px;background:linear-gradient(135deg,rgba(45,245,178,.15),rgba(77,226,255,.15));border:1px solid rgba(45,245,178,.35);border-radius:8px;text-align:center;font-size:15px;font-weight:700;color:var(--pastel-mint)">
+    🗺️ 대한민국 지도 보기 (클릭)
+   </div>
+  </div></div>
+
+ <div class="s16-nav">
+  <div class="s16-pills">
+   <button class="s16-tab-btn active" id="btnS16Chart" onclick="switchSlide16Tab('chart')">📈 1~9월 계약 체결 추이</button>
+   <button class="s16-tab-btn map-tab" id="btnS16Map" onclick="switchSlide16Tab('map')">🗺️ 대한민국 지도 분석 (지역별 클릭)</button>
+  </div>
+  <div id="s16MapExtraBtns" style="display:none">
+   <button onclick="openMapModal(window.currentSelectedMega || 'all')" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;padding:8px 20px;border-radius:999px;font-size:17px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px">
+    ⛶ 전체화면 확대
+   </button>
+  </div>
+ </div>
+
+ <div id="s16ViewChart" class="row" style="gap:30px;align-items:center"><div class="glass grow rv" style="--i:5;padding:18px 30px">${comboSvg()}<div class="legend" style="justify-content:center"><span><i style="background:#d9b66f"></i>변동 매장</span><span><i style="background:#ff6b73"></i>과다 (3·7·8월)</span><span><i style="background:#6aa7e6"></i>재계약</span><span><i style="background:none;border-top:3px dashed #ff6b73;width:24px;height:0;display:inline-block;vertical-align:middle;margin-right:6px"></i>관리 목표 (월 30건)</span></div></div>
+ <div class="glass rv" style="--i:6;width:470px;padding:30px 34px"><div class="tag">주요 사항</div><ul class="pts" style="margin-top:14px"><li style="font-size:26px">1~9월 595건,<br>전년 대비 48건 증가</li><li style="font-size:26px">신규 26개 · 폐점 1개<br>→ 25개 증가</li><li style="font-size:26px">3·7·8월 변동 과다<br><b class="red">월 30개 이내 관리 필요</b></li></ul></div></div>
+
+ <div id="s16ViewMap" class="row" style="display:none;gap:26px;align-items:stretch;height:450px">
+  <div class="glass" style="flex:1.15;padding:18px 24px;display:flex;flex-direction:column">
+   <div id="s16FilterBar" class="map-filter-bar" style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px">
+    <button class="map-filter-btn active" data-mega="all" onclick="selectMapRegion('all')"><span class="dot" style="background:#fff"></span>전국 전체 (545)</button>
+    <button class="map-filter-btn" data-mega="수도권" onclick="selectMapRegion('수도권')"><span class="dot" style="background:var(--pastel-mint)"></span>수도권 (190)</button>
+    <button class="map-filter-btn" data-mega="영남권" onclick="selectMapRegion('영남권')"><span class="dot" style="background:var(--pastel-pink)"></span>영남권 (155)</button>
+    <button class="map-filter-btn" data-mega="충청권" onclick="selectMapRegion('충청권')"><span class="dot" style="background:var(--pastel-lemon)"></span>충청권 (97)</button>
+    <button class="map-filter-btn" data-mega="호남권" onclick="selectMapRegion('호남권')"><span class="dot" style="background:var(--pastel-cyan)"></span>호남권 (73)</button>
+    <button class="map-filter-btn" data-mega="강원권" onclick="selectMapRegion('강원권')"><span class="dot" style="background:var(--pastel-purple)"></span>강원권 (23)</button>
+    <button class="map-filter-btn" data-mega="제주권" onclick="selectMapRegion('제주권')"><span class="dot" style="background:var(--pastel-peach)"></span>제주권 (7)</button>
+   </div>
+   <div id="s16MapWrapper" class="map-svg-viewport map-wrap active-all" style="flex:1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden">
+   </div>
+   <div style="font-size:14px;color:#94a3b8;margin-top:6px;display:flex;justify-content:space-between">
+    <span>💡 지도의 시·도 또는 상단 권역 버튼을 클릭하면 형광 파스텔 하이라이트 및 지점 목록이 표시됩니다.</span>
+    <span style="color:#cbd5e1">2026년 9월 말 기준 (545개)</span>
+   </div>
+  </div>
+
+  <div class="glass" style="flex:1;padding:22px 26px;display:flex;flex-direction:column">
+   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <div style="display:flex;align-items:center;gap:10px">
+     <span id="s16RegionBadge" style="padding:4px 14px;border-radius:999px;font-size:18px;font-weight:700;background:rgba(255,255,255,.15);color:#fff">전국 전체</span>
+     <span id="s16RegionCount" style="font-size:26px;font-weight:800;color:#fff">545<small style="font-size:18px;margin-left:4px;font-weight:500;color:#94a3b8">개 지점</small></span>
+    </div>
+    <div id="s16SubProvPills" style="display:flex;gap:5px;flex-wrap:wrap">
+    </div>
+   </div>
+
+   <div style="position:relative;margin-bottom:10px">
+    <input type="text" id="s16StoreSearch" placeholder="🔍 지점명 또는 도로명 주소 검색 (예: 수원, 조치원, 해운대...)" oninput="handleStoreSearch(this.value)" style="width:100%;padding:10px 16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:12px;font-size:17px;color:#fff;outline:none;font-family:inherit" />
+   </div>
+
+   <div id="s16StoreList" class="store-list-scroll" style="flex:1;max-height:300px">
+   </div>
+  </div>
+ </div>`,
+ say:[["열 번째, 위수탁사업계약서 작성 현황입니다."],["1월부터 9월까지 총 595건을 작성했고, 이는 전년 동기 547건보다 48건, 8.8퍼센트 증가한 수치입니다.",()=>runCnt()],["신규 및 사업장 변경이 322건, 재계약이 273건이며, 9월 말 기준 매장은 545개로 연초보다 25개 늘었습니다. 권역별로는 수도권 190개, 영남권 155개, 충청권 97개, 호남권 73개, 강원권 23개, 제주권 7개입니다."],["월평균 35개 매장에서 이동과 계약 해지가 발생하고 있으며, 특히 3월, 7월, 8월이 많았습니다. 앞으로 월 30개 이내로 관리가 필요합니다."]]});
 
 add({html:()=>`${H('Ⅹ','위수탁사업계약서 업무 분장','8명 · 1인당 약 74건 (월 평균 약 8건)')}
  <div class="flow" style="align-items:stretch">
@@ -491,7 +977,7 @@ add({html:()=>`${H('Ⅹ','위수탁사업계약서 업무 분장','8명 · 1인�
   <div class="fb glass rv" style="--i:3;background:linear-gradient(135deg,rgba(217,182,111,.25),rgba(217,182,111,.06));text-align:center"><div class="lbl">2026.10부터</div><div style="font-size:42px;font-weight:900;margin:18px 0">사업주전담팀<br>업무 이관</div><div class="lbl">신규 · 사업장변경 작성</div></div></div>
  <div class="tag rv" style="--i:4;margin:34px 0 14px">경영전략본부 유지 업무</div>
  <div class="row rv" style="--i:5;flex-wrap:wrap">${['이관분 계약서 검토','사업주 신원보증보험','세무대리인 관리','계약서 이력 관리','재계약 업무'].map(t=>`<span class="chip g" style="font-size:30px;padding:14px 28px">${t}</span>`).join('')}</div>
- <div class="glass rv" style="--i:6;margin-top:30px;padding:22px 36px;font-size:27px;line-height:1.5"><b class="gold">※</b> 수탁사업주 위임 하에 세무대리인에게 개업 의뢰 → 사업자 미등록 가산세·매입세액 불공제 문제 해결</div>`,
+ <div class="glass rv" style="--i:6;margin-top:30px;padding:22px 36px;font-size:27px;line-height:1.5"><b class="gold">※</b> 수탁사업주 위임하에 세무대리인에게 개업 의뢰 → 사업자 미등록 가산세·매입세액 불공제 문제 해결</div>`,
  say:[["계약서 작성은 경영전략본부 8명이 전체 595건을 체결했고, 1인당 약 74건, 월 평균으로는 8건 정도를 작성했습니다."],["2026년 10월부터는 신규와 사업장 변경 계약서 작성 업무를 사업주전담팀으로 이관했습니다."],["다만 이관분 검토, 사업주 신원보증보험, 세무대리인, 계약서 이력 관리, 재계약 관련 업무는 경영전략본부에서 계속 수행합니다."],["또한 수탁사업주 위임을 받아 세무대리인에게 개업을 의뢰하여, 사업자 미등록에 따른 가산세와 매입세액 불공제 문제를 해결했습니다."]]});
 
 add({cls:'divider',html:()=>`<div class="rn rv" style="--i:0">Ⅱ</div><h2 class="rv" style="--i:1">2026년 4분기<br>중점업무 추진목표</h2><p class="rv" style="--i:2">세무 · 재무 · 시스템 · 관계법인 관리</p>`,
@@ -499,33 +985,119 @@ add({cls:'divider',html:()=>`<div class="rn rv" style="--i:0">Ⅱ</div><h2 class
 
 add({html:()=>`${H('Ⅱ','4분기 중점업무 ① 세무 · 재무','조세쟁송 · 세법검토 · 신고 · 외부감사 · 결산')}
  <div class="g5" style="grid-template-columns:repeat(3,1fr);gap:24px">
-  ${[['조세쟁송','행정심','2014년 귀속 상여처분에 대한 행정심 대응'],
-     ['자금관리','MMDA · 여신금리','매월 이자율 확인으로 수익 극대화 · 비용 최소화'],
+  ${[['조세쟁송','행정심','2014년 귀속 상여처분에 대한<br>행정심 대응'],
+     ['자금관리','MMDA · 여신금리','매월 이자율 확인으로<br>수익 극대화 · 비용 최소화'],
      ['세법검토','2027년 개정세법','2026년 귀속 법인세 절감 연구'],
-     ['세금 신고','신고 및 납부','부가가치세 · 취득세(경대교, 조치원)<br>양도소득세(남전주점 토지·건물)'],
-     ['외부감사','중간 외부감사 대응','타이어뱅크 · 원풍약품상사 · 풍년농사<br>예정: AP홀딩스 · 성공을만드는 · 성공 · 좋은농사 · 선농종합식품'],
-     ['결산업무','17개 법인 결산','자체 장부 운영 17개 법인의 2026년 귀속 결산 진행']].map((c,i)=>`<div class="glass tilt rv" style="--i:${i+1};padding:30px 34px;min-height:340px"><div class="row" style="align-items:center;gap:16px"><div class="num">${i+1}</div><div class="tag" style="font-size:24px">${c[0]}</div></div><h4 style="font-size:36px;font-weight:700;margin:20px 0 14px">${c[1]}</h4><p style="font-size:26px;line-height:1.55;color:#dfe5f3">${c[2]}</p></div>`).join('')}</div>`,
- say:[["4분기 첫 번째 축은 세무와 재무입니다."],["조세쟁송은 2014년 귀속 상여처분에 대한 행정심에 대응하고, 자금관리는 MMDA와 여신 금리를 계속 관리하겠습니다."],["세법 검토로는 2027년 개정세법을 분석하여 2026년 귀속 법인세 절감 방안을 연구하겠습니다."],["부가가치세, 취득세, 양도소득세 신고와 납부를 기한 내에 마치고, 타이어뱅크, 원풍약품상사, 풍년농사를 시작으로 중간 외부감사에 대응하겠습니다."],["연말에는 자체 장부를 운영하는 17개 법인의 2026년 귀속 결산을 진행합니다."]]});
+     ['세금 신고','신고 및 납부','부가가치세 · 양도소득세(남전주점)<br>취득세(경대교, 조치원, 순천팔마)'],
+     ['외부감사','중간 외부감사 대응','타이어뱅크 · 원풍약품상사 · 풍년농사<br>예정: AP홀딩스 · 성공을만드는 · 성공<br>좋은농사 · 선농종합식품'],
+     ['결산업무','17개 법인 결산','자체 장부 운영 17개 법인의<br>2026년 귀속 결산 진행']].map((c,i)=>`<div class="glass tilt rv" style="--i:${i+1};padding:30px 34px;min-height:340px"><div class="row" style="align-items:center;gap:16px"><div class="num">${i+1}</div><div class="tag" style="font-size:24px">${c[0]}</div></div><h4 style="font-size:36px;font-weight:700;margin:20px 0 14px">${c[1]}</h4><p style="font-size:26px;line-height:1.55;color:#dfe5f3;word-break:keep-all">${c[2]}</p></div>`).join('')}</div>`,
+ say:[["4분기 첫 번째 축은 세무와 재무입니다."],["조세쟁송은 2014년 귀속 상여처분에 대한 행정심에 대응하고, 자금관리는 MMDA와 여신 금리를 계속 관리하겠습니다."],["세법 검토로는 2027년 개정세법을 분석하여 2026년 귀속 법인세 절감 방안을 연구하겠습니다."],["부가가치세와 남전주점 양도소득세, 경대교·조치원·순천팔마점 취득세 신고와 납부를 기한 내에 마치고, 타이어뱅크, 원풍약품상사, 풍년농사를 시작으로 중간 외부감사에 대응하겠습니다."],["연말에는 자체 장부를 운영하는 17개 법인의 2026년 귀속 결산을 진행합니다."]]});
 
 add({html:()=>`${H('Ⅱ','4분기 중점업무 ② 시스템 · 관리','ERP 구축 · 관계법인 관리 · 광고수익')}
  <div class="tl rv" style="--i:1;margin:6px 0 34px"><div class="tn"><div class="dot" style="font-size:22px">10.29</div><div class="dt">선농종합식품</div><div class="tt">재고실사 예정</div></div><div class="tn"><div class="dot" style="font-size:22px">11.9</div><div class="dt">옴니이솔</div><div class="tt">일부 오픈 사용</div></div><div class="tn"><div class="dot" style="font-size:22px">12월</div><div class="dt">연말</div><div class="tt">결산 · 폐기재고 반영</div></div><div class="tn win"><div class="dot" style="font-size:22px">2027</div><div class="dt">AI ERP</div><div class="tt">옴니이솔 본격 도입</div></div></div>
  <div class="row" style="gap:28px;align-items:stretch">
-  <div class="glass rv" style="--i:2;flex:1.3;padding:30px 36px"><div class="tag">ERP 구축 · AI 기반 “옴니이솔”</div><div style="display:flex;flex-wrap:wrap;gap:10px;margin:16px 0">${['인사','회계','그룹웨어','메신저','전자결재','1인 1 GPT','모바일결제'].map(t=>`<span class="chip g" style="font-size:25px">${t}</span>`).join('')}</div><p style="font-size:27px;line-height:1.5;color:#dfe5f3">하나의 플랫폼에서 모두 가능</p></div>
+  <div class="glass rv" style="--i:2;flex:1.3;padding:30px 36px"><div class="tag">ERP 구축 · AI 기반 “옴니이솔”</div><div style="display:flex;flex-wrap:wrap;gap:10px;margin:16px 0">${['인사','회계','그룹웨어','메신저','전자결재','1인 1 GPT','모바일결재'].map(t=>`<span class="chip g" style="font-size:25px">${t}</span>`).join('')}</div><p style="font-size:27px;line-height:1.5;color:#dfe5f3">하나의 플랫폼에서 모두 가능</p></div>
   <div class="glass rv" style="--i:3;flex:1;padding:30px 36px"><div class="tag">ERP 고도화</div><p style="font-size:27px;line-height:1.55;margin-top:14px">원풍약품상사 ERP 2026년 개발 완료 → 물류 정확성 확보<br>하반기 <b class="gold">영업관리</b> 추가: 채권채무 · 신용 · 거래처 영업관리</p></div></div>
  <div class="row" style="gap:28px;margin-top:28px;align-items:stretch">
   <div class="glass rv" style="--i:4;flex:1;padding:26px 34px"><div class="tag">관계법인 관리</div><p style="font-size:27px;line-height:1.55;margin-top:10px">선농종합식품 재고실사 (10.29)<br>성공㈜ · 성공정보통신㈜ 중임 등기</p></div>
-  <div class="glass rv" style="--i:5;flex:1;padding:26px 34px"><div class="tag">광고비 수입 증가</div><p style="font-size:27px;line-height:1.55;margin-top:10px">547개 매장 “사이니지 TV” — 자사 홍보와 함께 타사 광고 수주</p></div></div>`,
- say:[["두 번째 축은 시스템과 관계법인 관리입니다."],["2027년 도입 예정인 AI 기반 ERP 옴니이솔은 인사, 회계, 그룹웨어, 메신저, 전자결재, 1인 1 GPT, 모바일결제를 하나의 플랫폼에서 지원하며, 11월 9일부터 일부를 먼저 사용할 수 있습니다."],["원풍약품상사 ERP는 올해 개발을 완료해 물류 정확성을 확보하고, 하반기에 영업관리 기능을 추가하여 채권채무와 업체별 신용관리를 체계화하겠습니다."],["관계법인은 10월 29일 선농종합식품 재고실사와 성공 주식회사, 성공정보통신의 중임 등기를 기한 내 마감합니다."],["또한 547개 매장에 설치될 사이니지 TV에 타사 광고도 유치해 광고비 수익을 늘리겠습니다."]]});
+  <div class="glass rv" style="--i:5;flex:1;padding:26px 34px"><div class="tag">광고비 수입 및 행정관리</div><p style="font-size:27px;line-height:1.55;margin-top:10px">547개 매장 “사이니지 TV” — 자사 홍보와 함께 타사 광고 수주<br>신규 광고 매출 발생에 따른 <b class="gold">세금신고</b> 등 행정관리</p></div></div>`,
+ say:[["두 번째 축은 시스템과 관계법인 관리입니다."],["2027년 도입 예정인 AI 기반 ERP 옴니이솔은 인사, 회계, 그룹웨어, 메신저, 전자결재, 1인 1 GPT, 모바일결재를 하나의 플랫폼에서 지원하며, 11월 9일부터 일부를 먼저 사용할 수 있습니다."],["원풍약품상사 ERP는 올해 개발을 완료해 물류 정확성을 확보하고, 하반기에 영업관리 기능을 추가하여 채권채무와 업체별 신용관리를 체계화하겠습니다."],["관계법인은 10월 29일 선농종합식품 재고실사와 성공 주식회사, 성공정보통신의 중임 등기를 기한 내에 마감하겠습니다."],["또한 547개 매장에 설치될 사이니지 TV에 타사 광고도 유치해 광고비 수익을 늘리고, 신규 광고 매출 발생에 따른 세금신고 등 행정관리도 철저히 수행하겠습니다."]]});
 
 add({html:()=>`${H('Ⅱ','법인세 절감 · 폐기재고 결산 반영','원풍약품상사㈜ 2026.9.28 재고실사 → 유통기한 경과 폐기재고')}
  <div class="wf">
   <div class="c"><div class="blk" style="--i:0;height:360px;background:linear-gradient(180deg,#ff6b73,#a3262d);color:#fff">−7.5억</div><div class="cl">세전 이익<br>(폐기 재고 반영)</div></div>
   <div class="c"><div class="blk" style="--i:1;height:86px;background:linear-gradient(180deg,#f3dca4,#b88a2e);color:#1a1305;margin-bottom:274px">+1.8억</div><div class="cl">법인세 + 지방소득세<br>절감 24.2%</div></div>
   <div class="c"><div class="blk" style="--i:2;height:274px;background:linear-gradient(180deg,#7aa9e6,#2b5fa3);color:#fff">−5.7억</div><div class="cl">세후 순이익</div></div></div>`,
- say:[["마지막으로 법인세 절감 계획입니다."],["원풍약품상사의 9월 28일 재고실사에서 확인된 유통기한 경과 폐기 재고 7억 5천만 원을 올해 결산에 반영합니다."],["그러면 법인세와 지방소득세 1억 8천만 원, 24.2퍼센트가 줄어들어 세후 순이익 영향은 마이너스 5억 7천만 원으로 감소합니다."]]});
+ say:[["마지막으로 법인세 절감 계획입니다."],["원풍약품상사의 9월 28일 재고 실사에서 확인된 유통기한 경과 폐기 재고 7억 5천만 원을 올해 결산에 반영합니다."],["그러면 법인세와 지방소득세 1억 8천만 원, 24.2퍼센트가 줄어들어 세후 순이익 영향은 마이너스 5억 7천만 원으로 감소합니다."]]});
 
-add({cls:'thanks',html:()=>`<div class="orb" style="width:420px;height:420px;left:80px;top:60px;background:radial-gradient(circle,#3b64c4,transparent 70%)"></div><div style="position:relative"><div class="eyebrow tag rv" style="--i:0;font-size:28px;letter-spacing:8px">THANK YOU</div><h1 class="rv" style="--i:1">감사합니다</h1><p class="rv" style="--i:2">경영전략본부 · 2026년 3분기 실적보고</p><img class="rv" style="--i:3;height:110px;margin-top:40px" src="assets/logo.png" alt=""></div>`,
- say:[["이상으로 경영전략본부 2026년 3분기 실적보고를 마치겠습니다. 경청해 주셔서 감사합니다."]]});
+add({cls:'thanks',html:()=>`<div class="orb" style="width:480px;height:480px;left:60px;top:50px;background:radial-gradient(circle,#3b64c4,transparent 70%)"></div>
+<div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%">
+ <div class="eyebrow tag rv" style="--i:0;font-size:28px;letter-spacing:8px;margin-bottom:14px">THANK YOU</div>
+ <h1 class="rv" style="--i:1;margin:0 0 10px">감사합니다</h1>
+ <p class="rv" style="--i:2;font-size:34px;color:var(--mute);margin:0 0 26px">경영전략본부 · 2026년 3분기 실적보고</p>
+ <img class="rv" style="--i:3;height:105px;margin-bottom:20px" src="assets/logo.png" alt="타이어뱅크">
+ 
+ <!-- 로고 바로 아래에서 시원하게 굴러가는 타이어 로드 트랙 -->
+ <div class="road-track-wrap" style="position:relative;width:100%;height:160px;margin-top:20px;overflow:hidden">
+  <div class="road-line"></div>
+  <div class="road-dashes"></div>
+  <div class="tire-rolling-unit" onclick="restartTireAnimation()" title="클릭하면 타이어가 다시 힘차게 달립니다!">
+   <div class="tire-trail"></div>
+   <div class="tire-shadow"></div>
+   <div class="tire-rotator">
+    <svg class="tire-svg" viewBox="0 0 130 130" width="130" height="130" style="overflow:visible">
+    <defs>
+      <radialGradient id="tireRubber" cx="50%" cy="50%" r="50%">
+        <stop offset="60%" stop-color="#14161a"/>
+        <stop offset="85%" stop-color="#22262d"/>
+        <stop offset="96%" stop-color="#101114"/>
+        <stop offset="100%" stop-color="#0a0b0d"/>
+      </radialGradient>
+      <radialGradient id="rimBase" cx="40%" cy="35%" r="60%">
+        <stop offset="0%" stop-color="#f8fafc"/>
+        <stop offset="50%" stop-color="#94a3b8"/>
+        <stop offset="90%" stop-color="#334155"/>
+        <stop offset="100%" stop-color="#0f172a"/>
+      </radialGradient>
+      <linearGradient id="spokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f8fafc"/>
+        <stop offset="50%" stop-color="#cbd5e1"/>
+        <stop offset="100%" stop-color="#475569"/>
+      </linearGradient>
+      <radialGradient id="hubCap" cx="35%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#ffd54f"/>
+        <stop offset="60%" stop-color="#d97706"/>
+        <stop offset="100%" stop-color="#78350f"/>
+      </radialGradient>
+    </defs>
+    <circle cx="65" cy="65" r="63" fill="url(#tireRubber)" stroke="#2a2e37" stroke-width="2"/>
+    <line x1="123.0" y1="65.0" x2="130.0" y2="65.0" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="121.0" y1="80.0" x2="127.8" y2="81.8" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="115.2" y1="94.0" x2="121.3" y2="97.5" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="106.0" y1="106.0" x2="111.0" y2="111.0" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="94.0" y1="115.2" x2="97.5" y2="121.3" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="80.0" y1="121.0" x2="81.8" y2="127.8" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="65.0" y1="123.0" x2="65.0" y2="130.0" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="50.0" y1="121.0" x2="48.2" y2="127.8" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="36.0" y1="115.2" x2="32.5" y2="121.3" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="24.0" y1="106.0" x2="19.0" y2="111.0" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="14.8" y1="94.0" x2="8.7" y2="97.5" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="9.0" y1="80.0" x2="2.2" y2="81.8" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="7.0" y1="65.0" x2="0.0" y2="65.0" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="9.0" y1="50.0" x2="2.2" y2="48.2" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="14.8" y1="36.0" x2="8.7" y2="32.5" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="24.0" y1="24.0" x2="19.0" y2="19.0" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="36.0" y1="14.8" x2="32.5" y2="8.7" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="50.0" y1="9.0" x2="48.2" y2="2.2" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="65.0" y1="7.0" x2="65.0" y2="0.0" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="80.0" y1="9.0" x2="81.8" y2="2.2" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="94.0" y1="14.8" x2="97.5" y2="8.7" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="106.0" y1="24.0" x2="111.0" y2="19.0" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="115.2" y1="36.0" x2="121.3" y2="32.5" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/><line x1="121.0" y1="50.0" x2="127.8" y2="48.2" stroke="#0f1115" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="65" cy="65" r="51" fill="#0d0e12" stroke="#333842" stroke-width="2"/>
+    <circle cx="65" cy="65" r="47" fill="#171920" stroke="#1f232b" stroke-width="1.5"/>
+    <circle cx="65" cy="65" r="43" fill="url(#rimBase)" stroke="#cbd5e1" stroke-width="2"/>
+    <circle cx="65" cy="65" r="40" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+    <circle cx="65" cy="65" r="38" fill="#1e293b"/>
+    <circle cx="65" cy="65" r="38" fill="none" stroke="#475569" stroke-width="1" stroke-dasharray="2,4"/>
+    
+      <g transform="rotate(0 65 65)">
+        <path d="M 60 51 L 56 26 L 62 25 L 63 51 Z" fill="url(#spokeGrad)"/>
+        <path d="M 67 51 L 68 25 L 74 26 L 70 51 Z" fill="url(#spokeGrad)"/>
+      </g>
+    
+      <g transform="rotate(72 65 65)">
+        <path d="M 60 51 L 56 26 L 62 25 L 63 51 Z" fill="url(#spokeGrad)"/>
+        <path d="M 67 51 L 68 25 L 74 26 L 70 51 Z" fill="url(#spokeGrad)"/>
+      </g>
+    
+      <g transform="rotate(144 65 65)">
+        <path d="M 60 51 L 56 26 L 62 25 L 63 51 Z" fill="url(#spokeGrad)"/>
+        <path d="M 67 51 L 68 25 L 74 26 L 70 51 Z" fill="url(#spokeGrad)"/>
+      </g>
+    
+      <g transform="rotate(216 65 65)">
+        <path d="M 60 51 L 56 26 L 62 25 L 63 51 Z" fill="url(#spokeGrad)"/>
+        <path d="M 67 51 L 68 25 L 74 26 L 70 51 Z" fill="url(#spokeGrad)"/>
+      </g>
+    
+      <g transform="rotate(288 65 65)">
+        <path d="M 60 51 L 56 26 L 62 25 L 63 51 Z" fill="url(#spokeGrad)"/>
+        <path d="M 67 51 L 68 25 L 74 26 L 70 51 Z" fill="url(#spokeGrad)"/>
+      </g>
+    
+    <circle cx="65" cy="65" r="14" fill="url(#rimBase)" stroke="#64748b" stroke-width="1.5"/>
+    <circle cx="74.5" cy="65.0" r="1.8" fill="#e2e8f0" stroke="#334155" stroke-width="0.7"/><circle cx="67.9" cy="74.0" r="1.8" fill="#e2e8f0" stroke="#334155" stroke-width="0.7"/><circle cx="57.3" cy="70.6" r="1.8" fill="#e2e8f0" stroke="#334155" stroke-width="0.7"/><circle cx="57.3" cy="59.4" r="1.8" fill="#e2e8f0" stroke="#334155" stroke-width="0.7"/><circle cx="67.9" cy="56.0" r="1.8" fill="#e2e8f0" stroke="#334155" stroke-width="0.7"/>
+    <circle cx="65" cy="65" r="7" fill="url(#hubCap)" stroke="#b45309" stroke-width="1"/>
+    <circle cx="65" cy="65" r="2.5" fill="#fff" opacity="0.95"/>
+  </svg>
+   </div>
+  </div>
+ </div>
+</div>
+
+<button class="replay-tire-btn" onclick="restartTireAnimation()" style="bottom:80px;right:48px">
+ <span>🛞 타이어 굴리기 (다시 보기)</span>
+</button>`,
+ say:[["이상으로 경영전략본부 2026년 3분기 실적보고를 모두 마치겠습니다."]]});
 
 /* ============ BUILD ============ */
 const stage=document.getElementById('stage'),sub=document.getElementById('sub');
@@ -631,5 +1203,282 @@ $('bEdit').onclick=openEd;$('edCancel').onclick=()=>$('editor').classList.add('h
 $('edSave').onclick=()=>{document.querySelectorAll('#editForm input').forEach(i=>{TITLES[i.dataset.n]=i.value.trim()});try{localStorage.setItem('titles',JSON.stringify(TITLES))}catch(_){}
   $('editor').classList.add('hide');const was=idx;buildAll();show(was,true)};
 </script>
+
+<script>
+// --- KOREA MAP & STORE EXPLORER LOGIC ---
+window.currentSelectedMega = 'all';
+window.currentSelectedSubProv = 'all';
+window.currentSearchKeyword = '';
+
+function getMegaColor(mega) {
+  const map = {
+    '수도권': { text: '#2df5b2', bg: 'rgba(45, 245, 178, 0.25)', border: '#2df5b2' },
+    '영남권': { text: '#ff7ebb', bg: 'rgba(255, 126, 187, 0.25)', border: '#ff7ebb' },
+    '충청권': { text: '#ffe855', bg: 'rgba(255, 232, 85, 0.25)', border: '#ffe855' },
+    '호남권': { text: '#4de2ff', bg: 'rgba(77, 226, 255, 0.25)', border: '#4de2ff' },
+    '강원권': { text: '#cf8fff', bg: 'rgba(207, 143, 255, 0.25)', border: '#cf8fff' },
+    '제주권': { text: '#ffaa7a', bg: 'rgba(255, 170, 122, 0.25)', border: '#ffaa7a' },
+    'all': { text: '#fff', bg: 'rgba(255, 255, 255, 0.2)', border: '#fff' }
+  };
+  return map[mega] || map['all'];
+}
+
+function renderStoreExplorer(containerPrefix) {
+  const mapWrap = document.getElementById(containerPrefix + 'MapWrapper');
+  if (mapWrap && (!mapWrap.hasChildNodes() || !mapWrap.querySelector('svg'))) {
+    mapWrap.innerHTML = window.KOREA_MAP_SVG || '';
+    
+    // Attach click handlers to svg elements
+    const svg = mapWrap.querySelector('svg');
+    if (svg) {
+      svg.querySelectorAll('.map-prov').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const mega = el.getAttribute('data-mega');
+          if (mega) selectMapRegion(mega);
+        });
+      });
+      svg.querySelectorAll('.map-label-group').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const mega = el.getAttribute('data-mega');
+          if (mega) selectMapRegion(mega);
+        });
+      });
+    }
+  }
+
+  updateExplorerState(containerPrefix);
+}
+
+function updateExplorerState(prefix = '') {
+  const prefixes = prefix ? [prefix] : ['s16', 'modal'];
+  
+  prefixes.forEach(p => {
+    const mapWrap = document.getElementById(p + 'MapWrapper');
+    if (mapWrap) {
+      mapWrap.className = 'map-svg-viewport map-wrap active-' + window.currentSelectedMega;
+    }
+
+    // Update filter buttons
+    const filterContainer = document.getElementById(p + 'FilterBar');
+    if (filterContainer) {
+      filterContainer.querySelectorAll('.map-filter-btn').forEach(btn => {
+        const m = btn.getAttribute('data-mega');
+        if (m === window.currentSelectedMega) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // Filter store list
+    let filtered = (window.STORES_545 || []).filter(s => {
+      if (window.currentSelectedMega !== 'all' && s.mega !== window.currentSelectedMega) return false;
+      if (window.currentSelectedSubProv !== 'all' && s.region !== window.currentSelectedSubProv) return false;
+      if (window.currentSearchKeyword) {
+        const q = window.currentSearchKeyword.toLowerCase();
+        return s.name.toLowerCase().includes(q) || s.addr.toLowerCase().includes(q) || (s.region2 && s.region2.toLowerCase().includes(q));
+      }
+      return true;
+    });
+
+    // Update Header
+    const titleBadge = document.getElementById(p + 'RegionBadge');
+    const countBadge = document.getElementById(p + 'RegionCount');
+    const color = getMegaColor(window.currentSelectedMega);
+
+    if (titleBadge) {
+      titleBadge.innerText = window.currentSelectedMega === 'all' ? '전국 전체' : window.currentSelectedMega;
+      titleBadge.style.color = color.text;
+      titleBadge.style.background = color.bg;
+      titleBadge.style.border = '1px solid ' + color.border;
+      titleBadge.style.boxShadow = '0 0 10px ' + color.bg;
+    }
+    if (countBadge) {
+      countBadge.innerHTML = filtered.length + '<small style="font-size:18px;margin-left:4px;font-weight:500;color:#94a3b8">개 지점</small>';
+    }
+
+    // Sub-province pills
+    const subPillsContainer = document.getElementById(p + 'SubProvPills');
+    if (subPillsContainer) {
+      if (window.currentSelectedMega === 'all') {
+        subPillsContainer.innerHTML = '';
+      } else {
+        // Collect sub-provinces in current mega
+        const subCounts = {};
+        (window.STORES_545 || []).filter(s => s.mega === window.currentSelectedMega).forEach(s => {
+          subCounts[s.region] = (subCounts[s.region] || 0) + 1;
+        });
+        let pillsHtml = '<button class="map-filter-btn ' + (window.currentSelectedSubProv === 'all' ? 'active' : '') + '" style="font-size:14px;padding:3px 10px" onclick="selectSubProv(\'all\')">전체</button>';
+        Object.entries(subCounts).forEach(([reg, cnt]) => {
+          const shortName = reg.replace(/특별자치시|특별자치도|광역시|도/, '');
+          pillsHtml += '<button class="map-filter-btn ' + (window.currentSelectedSubProv === reg ? 'active' : '') + '" style="font-size:14px;padding:3px 10px" onclick="selectSubProv(\'' + reg + '\')">' + shortName + ' ' + cnt + '</button>';
+        });
+        subPillsContainer.innerHTML = pillsHtml;
+      }
+    }
+
+    // Render Store cards
+    const listContainer = document.getElementById(p + 'StoreList');
+    if (listContainer) {
+      if (filtered.length === 0) {
+        listContainer.innerHTML = '<div style="text-align:center;padding:40px 20px;color:#94a3b8;font-size:18px">검색 결과가 없습니다.</div>';
+      } else {
+        listContainer.innerHTML = filtered.map(s => {
+          const mColor = getMegaColor(s.mega);
+          return `
+            <div class="store-item-card">
+              <div class="store-item-top">
+                <div style="display:flex;align-items:center;gap:8px">
+                  <span class="store-name">${s.name}</span>
+                  <span style="font-size:13px;padding:2px 8px;border-radius:999px;background:${mColor.bg};color:${mColor.text};border:1px solid ${mColor.border}">${s.mega}</span>
+                </div>
+                <span class="store-region-chip">${s.region} ${s.region2}</span>
+              </div>
+              <div class="store-addr">${s.addr}</div>
+              <div class="store-tel">
+                <i style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#38bdf8"></i>
+                <a href="tel:${s.tel}" style="color:#38bdf8;text-decoration:none">${s.tel || '전화번호 안내중'}</a>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+  });
+}
+
+function selectMapRegion(mega) {
+  window.currentSelectedMega = mega;
+  window.currentSelectedSubProv = 'all';
+  updateExplorerState();
+}
+
+function selectSubProv(prov) {
+  window.currentSelectedSubProv = prov;
+  updateExplorerState();
+}
+
+function handleStoreSearch(val) {
+  window.currentSearchKeyword = val;
+  updateExplorerState();
+}
+
+function switchSlide16Tab(tab) {
+  const chartEl = document.getElementById('s16ViewChart');
+  const mapEl = document.getElementById('s16ViewMap');
+  const btnChart = document.getElementById('btnS16Chart');
+  const btnMap = document.getElementById('btnS16Map');
+  const extraBtns = document.getElementById('s16MapExtraBtns');
+
+  if (tab === 'map') {
+    if (chartEl) chartEl.style.display = 'none';
+    if (mapEl) mapEl.style.display = 'flex';
+    if (btnChart) btnChart.classList.remove('active');
+    if (btnMap) btnMap.classList.add('active');
+    if (extraBtns) extraBtns.style.display = 'block';
+    renderStoreExplorer('s16');
+  } else {
+    if (chartEl) chartEl.style.display = 'flex';
+    if (mapEl) mapEl.style.display = 'none';
+    if (btnChart) btnChart.classList.add('active');
+    if (btnMap) btnMap.classList.remove('active');
+    if (extraBtns) extraBtns.style.display = 'none';
+  }
+}
+
+function openMapModal(mega = 'all') {
+  window.currentSelectedMega = mega;
+  window.currentSelectedSubProv = 'all';
+  window.currentSearchKeyword = '';
+  
+  const modal = document.getElementById('mapModal');
+  if (modal) {
+    modal.classList.add('open');
+    renderStoreExplorer('modal');
+  }
+}
+
+function closeMapModal() {
+  const modal = document.getElementById('mapModal');
+  if (modal) modal.classList.remove('open');
+}
+
+// Close on ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMapModal();
+});
+</script>
+
+
+<div id="mapModal" class="modal-overlay" onclick="if(event.target===this)closeMapModal()">
+  <div class="modal-window">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <div style="display:flex;align-items:center;gap:14px">
+        <span class="tag" style="font-size:22px;padding:6px 16px;background:rgba(45,245,178,.15);color:#2df5b2;border:1px solid #2df5b2">KOREA STORE MAP</span>
+        <h2 style="font-size:36px;font-weight:800;color:#fff;margin:0">대한민국 전국 545개 매장 지도 분석</h2>
+      </div>
+      <button onclick="closeMapModal()" style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:20px;font-weight:700;padding:8px 22px;border-radius:999px;cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(255,255,255,.2)'" onmouseout="this.style.background='rgba(255,255,255,.1)'">✕ 닫기 (ESC)</button>
+    </div>
+
+    <div style="display:flex;gap:30px;flex:1;min-height:0">
+      <!-- Left: Map -->
+      <div class="glass" style="flex:1.2;padding:24px 30px;display:flex;flex-direction:column">
+        <div id="modalFilterBar" class="map-filter-bar" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+          <button class="map-filter-btn active" data-mega="all" onclick="selectMapRegion('all')"><span class="dot" style="background:#fff"></span>전국 전체 (545)</button>
+          <button class="map-filter-btn" data-mega="수도권" onclick="selectMapRegion('수도권')"><span class="dot" style="background:var(--pastel-mint)"></span>수도권 (190)</button>
+          <button class="map-filter-btn" data-mega="영남권" onclick="selectMapRegion('영남권')"><span class="dot" style="background:var(--pastel-pink)"></span>영남권 (155)</button>
+          <button class="map-filter-btn" data-mega="충청권" onclick="selectMapRegion('충청권')"><span class="dot" style="background:var(--pastel-lemon)"></span>충청권 (97)</button>
+          <button class="map-filter-btn" data-mega="호남권" onclick="selectMapRegion('호남권')"><span class="dot" style="background:var(--pastel-cyan)"></span>호남권 (73)</button>
+          <button class="map-filter-btn" data-mega="강원권" onclick="selectMapRegion('강원권')"><span class="dot" style="background:var(--pastel-purple)"></span>강원권 (23)</button>
+          <button class="map-filter-btn" data-mega="제주권" onclick="selectMapRegion('제주권')"><span class="dot" style="background:var(--pastel-peach)"></span>제주권 (7)</button>
+        </div>
+        <div id="modalMapWrapper" class="map-svg-viewport map-wrap active-all" style="flex:1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden">
+        </div>
+        <div style="font-size:16px;color:#94a3b8;margin-top:10px;display:flex;justify-content:space-between">
+          <span>💡 지도의 시·도 영역 또는 상단 권역 버튼을 클릭하면 형광 파스텔 하이라이트 및 지점 목록이 연동됩니다.</span>
+          <span style="color:#cbd5e1">타이어뱅크 2026년 9월 말 기준 (545개)</span>
+        </div>
+      </div>
+
+      <!-- Right: Store List -->
+      <div class="glass" style="flex:1;padding:26px 32px;display:flex;flex-direction:column">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span id="modalRegionBadge" style="padding:6px 16px;border-radius:999px;font-size:20px;font-weight:800;background:rgba(255,255,255,.15);color:#fff">전국 전체</span>
+            <span id="modalRegionCount" style="font-size:30px;font-weight:900;color:#fff">545<small style="font-size:20px;margin-left:6px;font-weight:500;color:#94a3b8">개 지점</small></span>
+          </div>
+          <div id="modalSubProvPills" style="display:flex;gap:6px;flex-wrap:wrap">
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <input type="text" id="modalStoreSearch" placeholder="🔍 지점명 또는 도로명 주소 검색 (예: 수원, 조치원, 해운대...)" oninput="handleStoreSearch(this.value)" style="width:100%;padding:12px 18px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;font-size:19px;color:#fff;outline:none;font-family:inherit" />
+        </div>
+
+        <div id="modalStoreList" class="store-list-scroll" style="flex:1;max-height:640px">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+function restartTireAnimation() {
+  const unit = document.querySelector('.tire-rolling-unit');
+  if (unit) {
+    unit.style.animation = 'none';
+    const rotator = unit.querySelector('.tire-rotator');
+    if (rotator) rotator.style.animation = 'none';
+    void unit.offsetWidth; // trigger reflow
+    unit.style.animation = 'rollAcross 6.8s linear infinite';
+    if (rotator) rotator.style.animation = 'spinTire 6.8s linear infinite';
+  }
+}
+</script>
+
 </body>
 </html>
