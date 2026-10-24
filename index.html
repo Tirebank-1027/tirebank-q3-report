@@ -280,7 +280,7 @@ html,body{background:#0b1426}
 .tc.sum{background:#1d2540;border:1px solid var(--gold)}
 .cover .eyebrow{font-size:26px}
 .cover h1{font-family:var(--sans);font-size:104px;font-weight:700;letter-spacing:-1px;margin:30px 0 56px;background:none;-webkit-text-fill-color:#fff;color:#fff}
-.cover .who{width:900px;text-align:center}
+.cover .who{position:absolute;left:0;right:0;bottom:110px;width:auto;text-align:center}
 .cover .who .w1{font-size:52px;font-weight:700}.cover .who .w2{font-size:38px;color:var(--mute);margin-top:12px}.cover .who .w3{font-size:28px;color:var(--mute);margin-top:8px}
 .logo3d{transform:none;animation:none;width:520px}
 .logo3d::before{transform:none;inset:18px -22px -22px 22px}
@@ -309,7 +309,11 @@ html,body{background:#0b1426}
 .ba .side.a .tg{background:#2f7f6b;color:#fff;border:1px solid #9fe3cf}
 .cover .l{margin-top:70px}.cover .who .w1{font-size:60px}.cover .who .w2{font-size:42px}
 .divider{padding-bottom:260px}.divider .rn{font-size:340px;font-weight:900}.divider h2{font-size:120px}
-.fit{position:relative}.pg{bottom:44px}
+.fit{position:relative}
+.t10r{height:118px}.t10r .lb{white-space:nowrap;font-size:30px;letter-spacing:-.5px}.t10r .pill{min-width:190px}.t10col{gap:20px}.pg{bottom:44px}
+.tc.in{animation-duration:.45s}
+.late{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.late.on{opacity:1;transform:none}
+.gb{transform-box:fill-box;transform-origin:0 50%}.slide.active .gb{animation:gbg 1.1s cubic-bezier(.2,.8,.2,1) both}@keyframes gbg{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 </style>
 </head>
 <body>
@@ -370,24 +374,32 @@ const REG=[['세종특별자치시',22323],['충남 천안시',15385],['인천�
 const H=(sec,t,s)=>`<div class="hd rv" style="--i:0"><div class="sec">${sec}</div><div><h2>${t}</h2>${s?`<p>${s}</p>`:''}</div></div><div class="brand"><img src="assets/logo.png" alt=""></div>`;
 const photo=(src,cls='')=>`<div class="ph tilt ${cls}"><img src="assets/${src}" alt=""></div>`;
 function combo(){
-  const W=1060,Hh=400,l=60,b=46,t=20,mx=50,bw=34,gp=(W-l-20)/9;
+  const W=1060,Hh=380,l=64,b=52,t=24,mx=50,gp=(W-l-16)/9,bw=gp*0.36;
   let s=`<svg viewBox="0 0 ${W} ${Hh+b+t}" width="100%">`;
-  for(let v=0;v<=50;v+=5){const y=t+Hh*(1-v/mx);s+=`<line x1="${l}" x2="${W-10}" y1="${y}" y2="${y}" stroke="rgba(255,255,255,.1)"/><text x="${l-12}" y="${y+7}" fill="#a9b3c9" font-size="20" text-anchor="end">${v}</text>`}
-  const y30=t+Hh*(1-20/mx);
-  s+=`<line class="dsh" x1="${l}" x2="${W-10}" y1="${y30}" y2="${y30}" stroke="#ff6b73" stroke-width="2.5"/>`;
-  CHG.forEach((v,i)=>{const x=l+gp*i+gp/2-bw-2,h=Hh*v/mx,hot=false;
-    s+=`<rect x="${x}" y="${t+Hh-h}" width="${bw}" height="${h}" rx="7" fill="${hot?'#ff6b73':'#d9b66f'}"/><text x="${x+bw/2}" y="${t+Hh-h-8}" fill="${hot?'#ffb3b8':'#f3dca4'}" font-size="20" font-weight="700" text-anchor="middle">${v}</text>`;
-    const v2=REN[i],h2=Hh*v2/mx,x2=x+bw+4;
-    s+=`<rect x="${x2}" y="${t+Hh-h2}" width="${bw}" height="${h2}" rx="7" fill="#6aa7e6"/><text x="${x2+bw/2}" y="${t+Hh-h2-8}" fill="#b5d5f5" font-size="20" text-anchor="middle">${v2}</text>`;
-    s+=`<text x="${l+gp*i+gp/2}" y="${t+Hh+34}" fill="#a9b3c9" font-size="22" text-anchor="middle">${MON[i]}</text>`});
+  for(let v=0;v<=50;v+=10){const y=t+Hh*(1-v/mx);s+=`<line x1="${l}" x2="${W-10}" y1="${y}" y2="${y}" stroke="rgba(255,255,255,.14)"/><text x="${l-12}" y="${y+8}" fill="#b8c4de" font-size="22" text-anchor="end">${v}</text>`}
+  CHG.forEach((v,i)=>{const cx=l+gp*i+gp/2,h=Hh*v/mx,v2=REN[i],h2=Hh*v2/mx;
+    s+=`<rect x="${cx-bw}" y="${t+Hh-h}" width="${bw}" height="${h}" fill="#d9b66f"/><text x="${cx-bw/2}" y="${t+Hh-h-10}" fill="#f3dca4" font-size="20" text-anchor="middle">${v}</text>`;
+    s+=`<rect x="${cx}" y="${t+Hh-h2}" width="${bw}" height="${h2}" fill="#6aa7e6"/><text x="${cx+bw/2}" y="${t+Hh-h2-10}" fill="#b5d5f5" font-size="20" text-anchor="middle">${v2}</text>`;
+    s+=`<text x="${cx}" y="${t+Hh+38}" fill="#e9eefb" font-size="26" text-anchor="middle">${MON[i]}</text>`});
+  const y20=t+Hh*(1-20/mx);
+  s+=`<line x1="${l}" x2="${W-10}" y1="${y20}" y2="${y20}" stroke="#ff6b73" stroke-width="5" style="stroke-dasharray:16 10;filter:drop-shadow(0 0 7px rgba(255,107,115,.95))"/>`;
   return s+'</svg>';
 }
-const comboSvg=()=>combo().replace('width="100%"','width="100%" style="height:380px"');
+function regionSvg(){const W=1000,rowH=46,t=14,l=250,max=22323,bw=W-l-120,Hh=t+REG.length*rowH+10;
+  let s=`<svg viewBox="0 0 ${W} ${Hh}" width="100%"><defs><linearGradient id="gbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8e6b4"/><stop offset=".45" stop-color="#d9b66f"/><stop offset="1" stop-color="#85641f"/></linearGradient></defs>`;
+  s+=`<line x1="${l}" x2="${l}" y1="${t-6}" y2="${Hh-8}" stroke="#7f8fb0" stroke-width="1.5"/>`;
+  REG.forEach((r,i)=>{const y=t+i*rowH,w=Math.max(r[1]/max*bw,3);
+    s+=`<line x1="${l-6}" x2="${l}" y1="${y+rowH/2}" y2="${y+rowH/2}" stroke="#7f8fb0"/>`;
+    s+=`<text x="${l-16}" y="${y+rowH/2+8}" fill="#e9eefb" font-size="24" text-anchor="end">${r[0]}</text>`;
+    s+=`<rect class="gb" x="${l}" y="${y+5}" width="${w}" height="${rowH-10}" rx="5" fill="url(#gbg)" style="animation-delay:${i*0.06}s;filter:drop-shadow(0 5px 5px rgba(0,0,0,.6)) drop-shadow(0 0 6px rgba(217,182,111,.35))"/><rect class="gb" x="${l+1}" y="${y+6}" width="${Math.max(w-2,1)}" height="${(rowH-10)*0.42}" rx="4" fill="rgba(255,255,255,.34)" style="animation-delay:${i*0.06}s"/>`;
+    s+=`<text x="${l+w+12}" y="${y+rowH/2+8}" fill="#e9eefb" font-size="22">${r[1].toLocaleString()}</text>`});
+  return s+'</svg>'}
+const comboSvg=()=>combo();
 function donut(a,b){const r=100,c=2*Math.PI*r,f=c*a/b;
-  return `<svg viewBox="0 0 260 260" width="300"><circle cx="130" cy="130" r="${r}" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="34"/>
-  <circle cx="130" cy="130" r="${r}" fill="none" stroke="url(#gd)" stroke-width="34" stroke-linecap="round" stroke-dasharray="0 ${c}" transform="rotate(-90 130 130)" class="dn" data-f="${f}" data-c="${c}"/>
+  return `<svg viewBox="0 0 260 260" width="340"><circle cx="130" cy="130" r="${r}" fill="none" stroke="#2b3a62" stroke-width="42"/>
+  <circle cx="130" cy="130" r="${r}" fill="none" stroke="#f3dca4" stroke-width="42" stroke-dasharray="0 ${c}" transform="rotate(-90 130 130)" class="dn" data-f="${f}" data-c="${c}"/>
   <defs><linearGradient id="gd"><stop offset="0" stop-color="#f3dca4"/><stop offset="1" stop-color="#b88a2e"/></linearGradient></defs>
-  <text x="130" y="128" text-anchor="middle" fill="#f5f2ea" font-size="60" font-weight="900">${a}</text><text x="130" y="168" text-anchor="middle" fill="#a9b3c9" font-size="26">/ ${b}개 법인</text></svg>`}
+  <text x="130" y="128" text-anchor="middle" fill="#f5f2ea" font-size="72" font-weight="700">${a}</text><text x="130" y="168" text-anchor="middle" fill="#a9b3c9" font-size="26">${b}개 법인</text></svg>`}
 
 /* ============ SLIDES ============ */
 const SL=[];
@@ -395,8 +407,9 @@ const add=o=>SL.push(o);
 
 add({cls:'cover',html:()=>`<div class="l" style="flex:1.3"><div class="eyebrow rv" style="--i:0">QUARTERLY PERFORMANCE REPORT</div>
  <h1 class="rv" style="--i:1">2026년 실적보고 및<br>2027년 경영목표</h1>
- <div class="who rv" style="--i:2"><div class="w1">경영전략본부</div><div class="w2">발표자 김호철</div><div class="w3">2026. 10. 27</div></div></div>
- <div class="r rv" style="--i:2"><div class="logo3d"><img src="assets/logo.png" alt="TIRE BANK"></div></div>`,
+ </div>
+ <div class="r rv" style="--i:2"><div class="logo3d"><img src="assets/logo.png" alt="TIRE BANK"></div></div>
+ <div class="who rv" style="--i:3"><div class="w1">경영전략본부</div><div class="w2">발표자 김호철</div><div class="w3">2026. 10. 27</div></div>`,
  say:()=>{const pt=TITLES['김호철']?' '+TITLES['김호철']:'';return [
  [`안녕하십니까. 경영전략본부 발표를 맡은 김호철${pt}입니다.`],
  ["지금부터 2026년 경영전략본부의 실적보고와, 이를 토대로 수립한 2027년 경영목표를 말씀드리겠습니다."],
@@ -409,9 +422,7 @@ add({id:'team',html:()=>`${H('본부','경영전략본부 부서원 소개','함
  <div class="team">${TEAM.map((t,i)=>{const ti=TITLES[t.n];return `<div class="tc" data-i="${i}"><div class="no">${String(i+1).padStart(2,'0')}</div>${photo('p'+(i+1)+'.jpg','flat')}<div><div class="nm">${t.n}</div><div class="ti ${ti?'':'empty'}">${ti||'경영전략본부'}</div></div></div>`}).join('')}
  <div class="tc sum"><div class="lbl">경영전략본부</div><div class="big gold">11명</div></div></div>
 `,
- say:()=>[["먼저 올해의 성과를 함께 만들어 온 경영전략본부 팀원을 소개드립니다."],
-  ["총 열한 명의 구성원이 세무, 회계, 자금, 계약, 전산 등 관계사 전반의 경영관리 업무를 분담하여 수행하고 있습니다."],
-  ...TEAM.map((t,i)=>[`${t.n}${TITLES[t.n]?' '+TITLES[t.n]:''}`,()=>teamIn(i)]),
+ say:()=>[...TEAM.map((t,i)=>[`${t.n}${TITLES[t.n]?' '+TITLES[t.n]:''}`,()=>teamIn(i)]),
   ["이상 열한 명의 경영전략본부 구성원이 함께 만든 2026년의 성과를, 지금부터 보고드리겠습니다.",()=>teamIn(11)]]});
 
 
@@ -419,8 +430,8 @@ add({cls:'divider',html:()=>`<div class="brand"><img src="assets/logo.png" alt="
  say:[["첫 번째 순서는 2026년 실적보고입니다."],["올해 경영전략본부는 관리법인의 확대, 세무 쟁점 대응, 관계사 시스템 전산화 등 다양한 과제를 수행했습니다. 먼저 열 가지 핵심 성과를 한눈에 요약해 드리고, 이어서 항목별로 자세히 말씀드리겠습니다."]]});
 
 
-const T10=[['관리법인 현황 행정업무 수행','22개'],['위수탁 사업계약서 체결','595건'],['MMDA 이자율 및 여신금리 관리','2.50%'],['지방세 서면 세무조사 대응','추징 0원'],['소득금액변동통지 승소','약 25억원'],['좋은타이어 회계프로그램 변경 및 전산화','9개 매장'],['농업법인 전국 농지 선제 자경','54,164평'],['원풍약품상사 재고실사 및 절세 도출','1.8억원'],['관계사 에어프레미아 파견 근무 지원','2개월'],['관계사 파멥신, 심뱅스 경영권 확보','2개사']];
-add({html:()=>`${H('Ⅰ','한눈에 보는 <em style="font-size:68px">10대</em> 성과','')}
+const T10=[['관리법인 현황 행정업무 수행','22개'],['위수탁 사업계약서 체결','595건'],['MMDA 이자율 및 여신금리 관리','2.50%'],['지방세 서면 세무조사 대응','추징 0원'],['소득금액변동통지 승소','약 25억원'],['좋은타이어 회계프로그램<br>변경 및 전산화','9개 매장'],['농업법인 전국 농지 선제 자경','54,164평'],['원풍약품상사 재고실사 및 절세 도출','1.8억원'],['관계사 에어프레미아 파견 근무 지원','2개월'],['관계사 파멥신, 심뱅스 경영권 확보','2개사']];
+add({html:()=>`${H('Ⅰ','한눈에 보는 <em style="font-size:95px;line-height:1">10대</em> 성과','')}
  <div class="row" style="gap:30px;margin-top:20px">${[0,1].map(c=>`<div class="t10col">${T10.slice(c*5,c*5+5).map((x,j)=>{const i=c*5+j;return `<div class="glass rv t10r" style="--i:${i+1}"><span class="bd">${String(i+1).padStart(2,'0')}</span><span class="lb">${x[0]}</span><span class="pill">${x[1]}</span></div>`}).join('')}</div>`).join('')}</div>`,
  say:[["한눈에 보는 10대 성과입니다. 올해 경영전략본부의 주요 업무를 열 가지로 정리했습니다."],
   ["첫째, 관리법인은 22개로 확대되어 관련 행정업무를 수행하고 있습니다. 둘째, 위수탁 사업계약서는 총 595건을 체결했습니다."],
@@ -445,14 +456,14 @@ add({html:()=>`${H('1','관계사 관리법인 현황','체계적인 업무 분�
 add({html:()=>`${H('1','관계사 관리법인 행정업무 수행','자금 · 세무 · 회계 · 총무 · 인사 자체 관리 → 빠르고 정확한 의사결정')}
  <div class="tag rv" style="--i:1;font-size:30px;letter-spacing:0;margin-bottom:12px">재무회계 · 기업가치 극대화</div>
  <div class="flow" style="margin-bottom:26px">
-  ${[['1','월간 손익계산서','매월 15일 보고로<br>경영자 의사결정 기여'],['2','미수채권 관리','회수기일 검토로<br>대손채권 방지'],['3','손익분기점 분석','분석을 통한 원가 통제']].map((c,i)=>`<div class="fb glass rv" style="--i:${i+2};text-align:center"><div class="row" style="align-items:center;justify-content:center"><div class="num">${c[0]}</div><h4 style="margin:0">${c[1]}</h4></div><p style="margin-top:12px">${c[2]}</p></div>${i<2?'<div class="fa">➜</div>':''}`).join('')}</div>
+  ${[['1','월간 손익계산서','매월 15일 보고로<br>경영자 의사결정 기여'],['2','미수채권 관리','회수기일 검토로<br>대손채권 방지'],['3','손익분기점 분석','분석을 통한 원가 통제']].map((c,i)=>`<div class="fb glass rv" style="--i:${i+2};padding:26px 30px"><div class="row" style="align-items:center;gap:22px;padding:4px 6px"><div class="num" style="width:66px;height:66px;font-size:34px">${c[0]}</div><h4 style="margin:0;font-size:42px;font-weight:700">${c[1]}</h4></div><p style="margin-top:20px;font-size:28px;font-weight:700;line-height:1.5;color:#b8c4de;text-align:center">${c[2]}</p></div>${i<2?'<div class="fa">➜</div>':''}`).join('')}</div>
  <div class="tag rv" style="--i:4;font-size:30px;letter-spacing:0;margin-bottom:12px">세무회계 · 세금 자체 신고·납부</div>
  <div class="row" style="gap:30px">
- <div class="glass rv" style="--i:5;padding:30px 36px;width:700px"><div class="tag">부가가치세 · 원천세</div>
-  <div style="display:flex;align-items:center;gap:20px;margin:10px 0">${donut(19,22)}<div><div class="lbl">22개 중</div><div style="font-size:34px;font-weight:700;margin:6px 0">3개 법인 제외</div><div class="lbl">19개법인<br>자체 신고·납부 완료</div></div></div></div>
- <div class="glass rv" style="--i:6;padding:30px 36px;flex:1"><div class="tag">사업소분 주민세 · 법인세분 지방소득세</div>
-  <div class="row" style="align-items:center;margin-top:18px;gap:22px"><div class="big gold" style="font-size:130px"><span class="cnt" data-to="539">0</span></div><div><div style="font-size:34px;font-weight:700">개 지자체</div><div class="lbl" style="margin-top:10px">타이어뱅크<br>직접 신고·납부 완료</div></div></div>
-  <div class="chip g" style="margin-top:22px">외부 위탁 없이 자체 수행</div></div></div>`,
+ <div class="glass rv" style="--i:5;padding:30px 36px;width:700px"><div class="tag" style="font-size:28px;letter-spacing:0">부가가치세 · 원천세</div>
+  <div style="display:flex;align-items:center;gap:20px;margin:10px 0">${donut(19,22)}<div><div style="font-size:38px;font-weight:700;line-height:1.35">22개 중<br>3개 법인 제외</div><div style="font-size:30px;color:#b8c4de;margin-top:26px;line-height:1.4">19개법인<br>자체 신고·납부 완료</div></div></div></div>
+ <div class="glass rv" style="--i:6;padding:30px 36px;flex:1"><div class="tag" style="font-size:28px;letter-spacing:0">사업소분 주민세 · 법인세분 지방소득세</div>
+  <div class="row" style="align-items:center;margin-top:18px;gap:22px"><div class="big gold" style="font-size:210px;letter-spacing:-4px"><span class="cnt" data-to="539">0</span></div><div><div style="font-size:52px;font-weight:700">개 지자체</div><div style="font-size:30px;color:#b8c4de;margin-top:12px;line-height:1.4">타이어뱅크<br>직접 신고·납부 완료</div></div></div>
+  <div class="chip" style="margin-top:26px;font-size:30px;font-weight:700;padding:14px 46px;border-radius:999px;background:#46464c;border:2px solid #d9b66f;color:#fff">외부 위탁 없이 자체 수행</div></div></div>`,
  say:[["이어서 관계사 관리법인의 행정업무 수행 현황입니다. 자금, 세무, 회계, 총무, 인사를 외부에 맡기지 않고 자체적으로 관리하여, 빠르고 정확한 의사결정을 지원하고 있습니다."],
  ["세무회계 분야에서는 22개 관리법인 가운데 3개 법인을 제외한 19개 법인의 부가가치세와 원천세를 자체적으로 신고하고 납부했습니다.",()=>runDonut()],
  ["또한 타이어뱅크의 사업소분 주민세와 법인세분 지방소득세는 539개 지자체에 직접 신고하고 납부를 완료했습니다. 외부 위탁 없이 자체적으로 수행했다는 점이 특징입니다.",()=>runCnt()],
@@ -466,8 +477,8 @@ add({html:()=>`${H('2','위수탁 사업계약서 체결','1~9월 월별 계약 
   <div class="kpi glass rv" style="--i:2"><div class="k">신규·변동 매장</div><div class="n"><span class="cnt" data-to="322">0</span><small>건</small></div><div class="s">월평균 35.8건</div></div>
   <div class="kpi glass rv" style="--i:3"><div class="k">재계약 매장</div><div class="n blue"><span class="cnt" data-to="273">0</span><small>건</small></div><div class="s">월평균 30.3건</div></div>
   <div class="kpi glass rv" style="--i:4"><div class="k">9월말 매장 수</div><div class="n"><span class="cnt" data-to="545">0</span><small>개</small></div><div class="s">연초 대비 +25개</div></div></div>
- <div class="row" style="gap:30px;align-items:center"><div class="glass grow rv" style="--i:5;padding:18px 30px">${comboSvg()}<div class="legend" style="justify-content:center"><span><i style="background:#d9b66f"></i>변동 매장</span><span><i style="background:#6aa7e6"></i>재계약</span><span><i style="background:#ff6b73;height:4px;vertical-align:5px"></i>관리 기준 (월 20개)</span></div></div>
- <div class="glass rv" style="--i:6;width:470px;padding:30px 34px"><div class="tag">주요 사항</div><ul class="pts" style="margin-top:14px"><li style="font-size:26px">1~9월 595건, 전년 대비 48건 증가</li><li style="font-size:26px">신규 26개 · 폐점 1개 → 25개 증가</li><li style="font-size:26px">3·7·8월 변동 과다<br><b class="red">월 20개 이내 관리 필요</b></li></ul></div></div>`,
+ <div class="row" style="gap:30px;align-items:stretch"><div class="glass grow rv" style="--i:5;padding:18px 30px">${comboSvg()}<div class="legend" style="justify-content:center"><span><i style="background:#d9b66f"></i>변동 매장</span><span><i style="background:#6aa7e6"></i>재계약</span><span style="color:#ff8f96;font-weight:700"><i style="background:#ff6b73;height:5px;width:28px;vertical-align:5px"></i>관리 기준 (월 20개)</span></div></div>
+ <div class="glass rv" style="--i:6;width:520px;padding:30px 36px;display:flex;flex-direction:column"><div class="tag" style="font-size:30px;letter-spacing:0">주요 사항</div><ul style="margin:22px 0 0 26px;font-size:36px;line-height:1.45;color:#fff"><li>1~9월 595건,<br>전년 대비 48건 증가</li><li style="margin-top:14px">신규 26개 · 폐점 1개<br>→ 25개 증가</li><li style="margin-top:14px">3·7·8월 변동 과다</li></ul><div style="margin-top:auto;padding-top:20px;text-align:center;font-size:38px;font-weight:900;color:#ff6b73;white-space:nowrap">월 20개 이내 관리 필요</div></div></div>`,
  say:[["두 번째, 위수탁 사업계약서 체결 현황입니다."],
  ["1월부터 9월까지 작성한 계약서는 총 595건으로, 전년 동기 547건 대비 48건, 8.8퍼센트 증가했습니다.",()=>runCnt()],
  ["내용별로는 신규 및 사업장 변경 매장이 322건으로 월평균 35.8건, 재계약 매장이 273건으로 월평균 30.3건입니다."],
@@ -493,7 +504,7 @@ add({html:()=>`${H('2','위수탁 사업계약서 업무 분장','8명 · 1인�
 add({html:()=>`${H('3','MMDA 이자율 및 여신금리 관리','이자수익의 극대화 · 이자비용의 최소화')}
  <div class="row" style="gap:28px;align-items:stretch;height:690px">
   <div class="glass rv" style="--i:1;flex:1.15;padding:34px 44px;display:flex;flex-direction:column"><div class="tag" style="font-size:26px;letter-spacing:0">① MMDA 이자율 관리 (2026.10 현재)</div>
-   <p style="font-size:27px;color:#9fb0d3;margin:14px 0 50px;line-height:1.5">매월 금융기관 MMDA 이자율 확인 → 당좌자산 예치 금융기관 결정</p>
+   <p style="font-size:23px;color:#9fb0d3;margin:14px 0 50px;line-height:1.5;white-space:nowrap">매월 금융기관 MMDA 이자율 확인 → 당좌자산 예치 금융기관 결정</p>
    <div class="bars" style="gap:40px"><div class="bar mm" style="--w:83.3%"><span>농협은행</span><div class="tk"><i></i></div><span class="v">2.5%</span></div><div class="bar mm b2" style="--w:76.7%"><span>우리은행</span><div class="tk"><i></i></div><span class="v">2.3%</span></div></div>
    <div class="chip g" style="margin-top:auto;justify-content:center;font-size:34px;padding:14px;font-weight:700;border-radius:999px">이자수익 극대화</div></div>
   <div class="glass rv" style="--i:2;flex:1;padding:34px 44px;display:flex;flex-direction:column"><div class="tag" style="font-size:26px;letter-spacing:0">② 여신 금리 관리</div>
@@ -526,7 +537,7 @@ add({html:()=>`${H('5','소득금액변동통지 승소','2013년 귀속 · 대�
   <div class="tn"><div class="dot">3</div><div class="dt">2024.03.27</div><div class="tt">소득금액 변경통지</div><div class="st">30일 반론 기회 미부여<br>→ 위법 (소송 대상)</div></div>
   <div class="tn win"><div class="dot">4</div><div class="dt">2026.08.27</div><div class="tt">대전지법 판결 승소</div><div class="st">2024.03.27 통지 무효</div></div></div>
  <div class="row" style="margin-top:46px;align-items:stretch">
-  <div class="glass rv" style="--i:3;padding:34px 44px;flex:1;display:flex;align-items:center;gap:40px"><div class="stamp">승 소</div><div><div class="lbl">원천징수 예상세액 환급</div><div class="big gold" style="font-size:130px">약 <span class="cnt" data-to="25">0</span><small style="font-size:56px">억</small></div></div></div>
+  <div class="glass rv" style="--i:3;padding:34px 44px;flex:1;display:flex;align-items:center;gap:40px"><div class="stamp">승 소</div><div><div class="lbl">원천징수 예상세액 환급</div><div class="big gold" style="font-size:130px">약 <span>25</span><small style="font-size:56px">억</small></div></div></div>
   <div class="glass rv" style="--i:4;padding:34px 40px;width:640px"><div class="tag">핵심 쟁점</div><ul class="pts" style="margin-top:16px"><li>반론 기회(30일) 미부여</li><li>절차 위반으로 통지 무효 확정</li></ul></div></div>`,
  say:[["다섯 번째, 소득금액변동통지 소송 승소 건입니다. 2013년 귀속분에 대한 대전지방법원 판결로, 타이어뱅크가 승소했습니다."],
  ["2016년 11월 28일 세무조사 결과가 통지되었습니다. 30일간 과세전적부심사를 청구할 수 있었음에도, 불과 3일 만에 1차 소득금액변동통지가 이루어졌습니다."],
@@ -540,7 +551,7 @@ add({html:()=>`${H('6','좋은타이어 회계프로그램 변경 및 전산화'
  <div class="flow" style="align-items:stretch">
   <div class="fb glass rv" style="--i:1;flex:1.35"><div class="tag">AS-IS · 현재</div><h4 style="margin-top:10px">9개 매장 수기 엑셀 작업</h4><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px">${['이천점','공촌점','유성점','안동점','동아산점','녹산점','양곡점','기흥점','서산점'].map(s=>`<span class="chip" style="font-size:24px;padding:6px 16px;justify-content:center;border-radius:10px">${s}</span>`).join('')}</div><p style="margin-top:14px">매출·재고 관리 전부 수기</p></div><div class="fa">➜</div>
   <div class="fb glass rv" style="--i:2"><div class="tag">STEP 1</div><h4 style="margin-top:10px">회계프로그램 변경</h4><p>인사·회계 프로그램 도입 완료<br><b class="gold">제닉스X</b></p></div><div class="fa">➜</div>
-  <div class="fb glass rv" style="--i:3"><div class="tag">STEP 2</div><h4 style="margin-top:10px">판매 ERP 설계 완료</h4><p>회계 프로그램 기준으로<br>판매 프로그램 ERP 설계<br>자동전표 개발 및 연동 로직 구성 완료</p></div></div>
+  <div class="fb glass rv" style="--i:3"><div class="tag">STEP 2</div><h4 style="margin-top:10px">판매 ERP 설계완료</h4><p>회계 프로그램 기준으로<br>판매 프로그램 ERP 설계<br><span style="display:block;height:20px"></span>자동전표 개발 및 연동<br>로직 구성 완료</p></div></div>
  <div class="row" style="margin-top:34px;gap:26px">
   <div class="glass rv" style="--i:4;flex:1;padding:30px 36px"><div class="tag">ERP 도입 시 기대 효과 (ERP 도입예정)</div><ul class="pts" style="margin-top:14px"><li>수기 관리 항목 전산화</li><li>업무 시간 단축</li><li>판매관리 · 매장별 재고 정확성 검증</li></ul></div>
   <div class="glass rv" style="--i:5;width:560px;padding:30px 36px;text-align:center"><div class="lbl">매장 증가 대비</div><div class="big gold" style="font-size:100px;margin:10px 0">9<small style="font-size:40px">개 매장</small></div><div class="lbl">추후 확장 가능한 시스템</div></div></div>`,
@@ -558,21 +569,18 @@ add({html:()=>`${H('7','농업법인 전국 농지 선제 자경','이재명 정
   <div class="tn rv" style="--i:2"><div class="dot">2</div><div class="dt">2026. 5. 7</div><div class="tt">농지법 개정안 국회 통과</div><div class="st">전수조사 실효성·<br>처분명령 강화</div></div>
   <div class="tn rv" style="--i:3"><div class="dot">3</div><div class="dt">2026. 5 ~ 2027</div><div class="tt">2단계 전수조사 진행</div><div class="st">2026년: 1996년 이후 취득 농지<br>2027년: 1996년 이전 취득 농지</div></div>
   <div class="tn win rv" style="--i:4"><div class="dot">✔</div><div class="dt">당사 대응</div><div class="tt">12개 지역 자경 완료</div><div class="st">농작물 매출 발생</div></div></div>
- <div class="glass rv" style="--i:5;margin-top:52px;padding:34px 50px;display:flex;align-items:center;justify-content:space-around;gap:30px">
-  <div style="text-align:center"><div class="lbl">자경 지역</div><div class="big gold" style="font-size:110px"><span class="cnt" data-to="12">0</span><small style="font-size:40px">곳</small></div></div>
-  <div class="gold" style="font-size:60px">+</div>
-  <div style="text-align:center"><div class="lbl">총 자경면적</div><div class="big gold" style="font-size:110px"><span class="cnt" data-to="54164">0</span><small style="font-size:40px">평</small></div><div class="lbl">179,079㎡</div></div></div>`,
+ <div class="glass rv" id="farmBox" style="--i:5;margin-top:52px;padding:30px 50px;display:flex;align-items:center;justify-content:space-around;gap:30px"><div style="text-align:center"><div class="lbl">자경 지역</div><div class="big gold" style="font-size:150px;margin-top:14px"><span class="cnt" data-to="12">0</span><small style="font-size:56px">곳</small></div></div><div class="gold" style="font-size:64px">+</div><div style="text-align:center"><div class="lbl">총 자경면적</div><div class="big gold" style="font-size:150px;margin-top:14px"><span class="cnt" data-to="54164">0</span><small style="font-size:56px">평</small><span style="font-size:34px;color:#b8c4de;font-weight:700;letter-spacing:0;margin-left:26px">(179,079㎡)</span></div></div></div>`,
  say:[["일곱 번째, 농업법인 전국 농지 선제 자경입니다."],
  ["2026년 2월 24일, 정부는 대통령 국무회의 지시에 따라 전국 농지 전수조사에 착수했습니다. 이재명 정부 최초의 조사이며, 투기 농지에 대한 매각명령 집행도 검토하기 시작했습니다."],
- ["5월 7일에는 전수조사의 실효성을 높이고 처분명령을 강화하는 농지법 개정안이 국회를 통과했습니다."],
+ ["5월 7일에는 전수조사의 실효성을 높이고 처분명령을 강화하는 농지법 개정안이 국회를 통과했습니다.",()=>showFarm()],
  ["조사는 2단계로 진행되어, 2026년에는 1996년 이후 취득 농지를, 2027년에는 1996년 이전 취득 농지를 대상으로 합니다."],
- ["이에 선제적으로 대응하여 당사는 12개 지역에서 자경을 완료했습니다. 총 자경면적은 54,164평, 약 179,079제곱미터이며, 농작물 매출도 발생했습니다.",()=>runCnt()]]});
+ ["이에 선제적으로 대응하여 당사는 12개 지역에서 자경을 완료했습니다. 총 자경면적은 54,164평, 약 179,079제곱미터이며, 농작물 매출도 발생했습니다."]]});
 
 
 add({html:()=>`${H('7','농업법인 전국 농지 선제 자경','지역별 자경 면적 (단위: 평)')}
- <div class="row" style="gap:50px;align-items:center">
-  <div class="bars grow">${REG.map((r,i)=>`<div class="bar rv " style="--i:${Math.min(i,6)+1};--w:${Math.max(r[1]/22323*100,1.5)}%"><span>${r[0]}</span><div class="tk"><i></i></div><span class="v">${r[1].toLocaleString()}</span></div>`).join('')}</div>
-  <div class="glass rv" style="--i:3;width:460px;padding:44px 36px;text-align:center"><div class="lbl">총 자경면적</div><div class="big gold" style="font-size:96px;margin:14px 0">54,164<small style="font-size:40px">평</small></div><div class="lbl">179,079㎡</div><div class="chip g" style="margin-top:22px">농작물 매출 발생</div></div></div>`,
+ <div class="row" style="gap:50px;align-items:stretch">
+  <div class="bars grow">${REG.map((r,i)=>`<div class="bar rv" style="--i:${Math.min(i,6)+1};--w:${Math.max(r[1]/22323*100,1.5)}%"><span>${r[0]}</span><div class="tk"><i></i></div><span class="v">${r[1].toLocaleString()}</span></div>`).join('')}</div>
+  <div class="glass rv" style="--i:2;width:440px;padding:30px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center"><div style="font-size:30px;color:#b8c4de">총 자경면적</div><div class="big gold" style="font-size:92px;margin:56px 0 44px;letter-spacing:-2px;white-space:nowrap">54,164평</div><div style="font-size:28px;color:#b8c4de">179,079㎡</div><div class="chip" style="margin-top:46px;font-size:30px;font-weight:700;padding:14px 44px;border-radius:999px;background:#46464c;border:2px solid #d9b66f;color:var(--gold2)">농작물 매출 발생</div></div></div>`,
  say:[["지역별 자경 면적입니다. 세종특별자치시가 22,323평으로 가장 넓고, 충남 천안시 15,385평, 인천광역시 12,645평 순입니다."],
  ["이 세 지역이 전체 54,164평의 약 93퍼센트를 차지합니다. 대전광역시 1,685평을 비롯해 충남 공주시, 경북 경주시, 경기 시흥시 등 나머지 아홉 개 지역까지 모두 자경을 완료했습니다."]]});
 
@@ -622,8 +630,8 @@ add({html:()=>`${H('9','관계사 에어프레미아 파견 근무 지원','수�
   <div class="grow"><div style="text-align:right;margin-bottom:6px"><img src="assets/airpremia.png" alt="AIR PREMIA" style="height:34px"></div><div style="display:flex;justify-content:space-between;font-size:34px;font-weight:700"><span class="gold">2026. 05. 18</span><span class="gold">2026. 07. 16</span></div>
   <div style="height:18px;border-radius:18px;margin:14px 0;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 0 30px rgba(217,182,111,.5);position:relative"></div><div class="lbl" style="text-align:center">약 2개월 · RA 행정업무 지원</div></div></div></div>
  <div class="tag rv" style="--i:2;margin-bottom:14px">수행 업무 결과</div>
- <div class="flow" style="gap:22px">${['수입심사 업무 Process 숙지','거래처 정산 이상 사례 확인','프로모션 오남용 확인','NF 티켓 운영 검토'].map((t,i)=>`<div class="fb glass rv" style="--i:${i+3}"><div class="num" style="margin:0 auto 16px">${i+1}</div><h4 style="font-size:26px;white-space:nowrap;text-align:center">${t}</h4></div>`).join('')}</div>
- <div class="glass rv" style="--i:7;margin-top:30px;padding:24px 36px;display:flex;gap:22px;align-items:center"><div class="chip g">결과</div><div style="font-size:30px">RA파트 운영 현황 파악 → <b class="gold">개선 방안 도출</b></div></div>`,
+ <div class="flow" style="gap:22px">${['수입심사 업무<br>Process 숙지','거래처 정산<br>이상 사례 확인','프로모션<br>오남용 확인','NF 티켓<br>운영 검토'].map((t,i)=>`<div class="fb glass rv" style="--i:${i+3};padding:34px 20px;min-height:230px;display:flex;flex-direction:column;align-items:center"><div class="num" style="margin:0 0 22px;width:60px;height:60px;font-size:32px">${i+1}</div><h4 style="font-size:34px;line-height:1.35;text-align:center;margin:0">${t}</h4></div>`).join('')}</div>
+ <div class="glass rv" style="--i:7;margin-top:30px;padding:24px 36px;display:flex;gap:22px;align-items:center"><div class="chip" style="font-size:26px;font-weight:700;padding:12px 34px;border-radius:999px;background:#46464c;border:2px solid #d9b66f;color:#fff">결과</div><div style="font-size:38px">RA파트 운영 현황 파악 → <b class="gold">개선 방안 도출</b></div></div>`,
  say:[["아홉 번째, 관계사 에어프레미아 파견 근무 지원입니다."],
  ["수입심사, 즉 RA 파트에 결원이 생겨 행정업무 지원이 필요했습니다. 이에 박성준 대리가 2026년 5월 18일부터 7월 16일까지, 약 2개월간 파견 근무를 수행했습니다."],
  ["수행 업무는 네 가지입니다. 먼저 수입심사 업무 프로세스를 숙지했고, 거래처 정산 과정에서 나타난 이상 사례를 확인했습니다."],
@@ -649,7 +657,7 @@ add({html:()=>`${H('Ⅰ','2026년 4분기 마무리 예정업무','신규 제도
  ${[['1','제도 개편','채권 안정성 확보','사업보증금제도 개편','수탁사업주 사업보증금 제도 개편에 따른 초기 도입','개편 기준 정립 및 계약 반영으로 채권 리스크 사전 예방',[]],
     ['2','신규 수익원','부가매출 창출','사이니지TV 설치','전국 매장 사이니지TV 설치','전국 매장 인프라 활용 브랜드 홍보 및 광고 수익모델 구축',[]],
     ['3','회계 투명성','대상법인 8개사','외부회계 중간감사 대응','','주요 8개 관계사 가결산 점검 및 기말 회계감사 선제 대응',['타이어뱅크','원풍약품상사','풍년농사','AP홀딩스','성공을만드는','성공','좋은농사','선농종합식품']],
-    ['4','내부 통제','대상법인 3개사','관리법인 내부감사업무','','자금·재고·계약 프로세스 적정성 점검 및 경영 투명성 제고',['선농종합식품','파이프뱅크','폴리텍']]].map((c,i)=>`<div class="glass tilt rv" style="--i:${i+1};padding:24px 32px;min-height:330px;display:flex;flex-direction:column"><div class="row" style="align-items:center;gap:14px"><div class="num" style="width:46px;height:46px;font-size:24px">${c[0]}</div><span class="chip" style="font-size:22px;padding:5px 18px">${c[1]}</span><span class="chip g" style="font-size:22px;padding:5px 18px;margin-left:auto">${c[2]}</span></div><h3 style="font-size:42px;font-weight:900;margin:14px 0 8px">${c[3]}</h3>${c[4]?`<div style="font-size:26px;font-weight:700;color:var(--gold2)">${c[4]}</div>`:''}${c[6].length?`<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px">${c[6].map(f=>`<span class="chip" style="font-size:21px;padding:5px 6px;justify-content:center;border-radius:12px">${f}</span>`).join('')}</div>`:''}<div style="margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:25px;line-height:1.45;color:#dfe5f3"><span class="gold">➜</span> ${c[5]}</div></div>`).join('')}</div>`,
+    ['4','내부 통제','대상법인 3개사','관리법인 내부감사업무','','자금·재고·계약 프로세스 적정성 점검 및 경영 투명성 제고',['선농종합식품','파이프뱅크','폴리텍']]].map((c,i)=>`<div class="glass rv" style="--i:${i+1};padding:26px 34px 22px;min-height:340px;display:flex;flex-direction:column;${i>=2?'border-color:#d9b66f;':''}"><div class="row" style="align-items:center;gap:14px"><div class="num" style="width:58px;height:58px;font-size:30px">${c[0]}</div><span class="chip" style="font-size:24px;font-weight:700;padding:8px 30px;border-radius:999px;background:#2b3a62;border:1px solid #3d4f7d;color:#fff">${c[1]}</span><span class="chip" style="font-size:24px;font-weight:700;padding:8px 30px;border-radius:999px;background:#d9b66f;border:0;color:#1a1305;margin-left:auto">${c[2]}</span></div><h3 style="font-size:50px;font-weight:900;margin:14px 0 8px;color:var(--gold2)">${c[3]}</h3>${c[4]?`<div style="font-size:31px;font-weight:700;color:#fff">${c[4]}</div>`:''}${c[6].length?`<div style="display:grid;grid-template-columns:repeat(${c[6].length>4?4:3},1fr);gap:${c[6].length>4?8:16}px;margin-top:${c[6].length>4?10:18}px">${c[6].map(f=>`<span style="text-align:center;font-weight:700;color:#fff;background:#0b1426;border:1px solid ${c[6].length>4?'#2d4673':'#d9b66f'};border-radius:${c[6].length>4?8:12}px;padding:${c[6].length>4?'7px 4px':'14px 6px'};font-size:${c[6].length>4?23:30}px">${f}</span>`).join('')}</div>`:''}<div style="margin-top:auto;padding-top:14px;border-top:1px solid #3d4a75;font-size:26px;line-height:1.45;color:#b8c4de"><span>➜</span> ${c[5]}</div></div>`).join('')}</div>`,
  say:[["다음은 2026년 4분기 마무리 예정업무입니다. 신규 제도의 안착, 수익 다각화, 관계사 회계 및 내부감사 완수가 핵심입니다."],
   ["첫째, 제도 개편 분야로 사업보증금제도를 개편합니다. 수탁사업주 사업보증금 제도 개편에 따른 초기 도입 단계로, 개편 기준을 정립하고 계약에 반영하여 채권 리스크를 사전에 예방하겠습니다."],
   ["둘째, 신규 수익원으로 사이니지 TV를 설치합니다. 전국 매장 인프라를 활용해 브랜드 홍보는 물론 광고 수익모델을 구축하여 부가매출을 창출하겠습니다."],
@@ -663,9 +671,9 @@ add({cls:'divider',html:()=>`<div class="brand"><img src="assets/logo.png" alt="
 
 
 const tile6=(arr)=>`<div class="g5" style="grid-template-columns:repeat(3,1fr);gap:24px">${arr.map((c,i)=>`<div class="glass tilt rv" style="--i:${i+1};padding:26px 32px;min-height:326px;display:flex;flex-direction:column"><div class="row" style="align-items:center;gap:14px"><div class="num">${c[0]}</div><span class="chip g" style="font-size:22px;padding:5px 18px;margin-left:auto">${c[1]}</span></div><h3 style="font-size:40px;font-weight:900;margin:18px 0 8px;line-height:1.2">${c[2]}</h3><div style="font-size:27px;font-weight:700;color:var(--gold2)">${c[3]}</div><div style="margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-size:25px;line-height:1.5;color:#dfe5f3">${c[4]}</div></div>`).join('')}</div>`;
-const sec=(n,t)=>`<div class="row rv" style="align-items:center;gap:16px;margin:0 0 14px"><div class="num" style="width:44px;height:44px;font-size:24px">${n}</div><div style="font-size:32px;font-weight:700">${t}</div></div>`;
-const mini=(i,tag,badge,title,sub,desc)=>`<div class="glass tilt rv" style="--i:${i};padding:22px 28px;flex:1;display:flex;flex-direction:column"><div class="row" style="align-items:center;gap:12px"><span class="chip" style="font-size:21px;padding:4px 16px">${tag}</span>${badge?`<span class="chip g" style="font-size:21px;padding:4px 16px;margin-left:auto">${badge}</span>`:''}</div><h4 style="font-size:36px;font-weight:900;margin:14px 0 6px;line-height:1.25">${title}</h4><div style="font-size:25px;font-weight:700;color:var(--gold2)">${sub}</div><div style="margin-top:auto;padding-top:10px;font-size:24px;line-height:1.45;color:#dfe5f3">${desc}</div></div>`;
-const arw=`<div class="fa" style="width:52px;font-size:36px">➜</div>`;
+const sec=(n,t)=>`<div class="row rv" style="align-items:center;gap:16px;margin:0 0 14px"><div class="num" style="width:52px;height:52px;font-size:28px">${n}</div><div style="font-size:38px;font-weight:700">${t}</div></div>`;
+const mini=(i,tag,badge,title,sub,desc,o={})=>`<div class="glass rv" style="--i:${i};padding:24px 30px;flex:1;display:flex;flex-direction:column;position:relative;${o.bar?'padding-left:58px;':''}${o.gold?'border-color:#d9b66f;':''}">${o.bar?'<div style="position:absolute;left:24px;top:24px;bottom:24px;width:7px;border-radius:7px;background:#d9b66f"></div>':''}<div class="row" style="align-items:center;gap:12px"><span class="chip" style="font-size:24px;font-weight:700;padding:7px 28px;border-radius:999px;${o.goldchip?'background:#d9b66f;color:#1a1305;border:0':'background:#2b3a62;color:#f3dca4;border:1px solid '+(o.bar?'#d9b66f':'#3d4f7d')}">${tag}</span>${badge?`<span class="chip" style="font-size:24px;font-weight:700;padding:7px 28px;border-radius:999px;background:#d9b66f;border:0;color:#1a1305;margin-left:auto">${badge}</span>`:''}</div><h4 style="font-size:${o.ts||44}px;font-weight:900;margin:18px 0 8px;line-height:1.25;color:#fff">${title}</h4>${sub?`<div style="font-size:31px;font-weight:700;color:var(--gold2)">${sub}</div>`:''}<div style="margin-top:${sub?'auto':'4px'};padding-top:10px;font-size:${o.ds||26}px;line-height:1.5;color:#b8c4de">${desc}</div></div>`;
+const arw=`<div class="fa" style="width:56px;font-size:46px">➜</div>`;
 add({html:()=>`${H('Ⅱ','한눈에 보는 <em>2027년 6대</em> 경영목표','안정적 수익창출과 기업가치 극대화를 통한 지속가능 성장 실현')}
  ${tile6([['1','자산운용','투자자산 가치 극대화','부동산 · 증권 수익 제고','투자부동산 활용·매각 추진<br>투자증권 포트폴리오 수익률 향상'],
   ['2','사업구조','수익중심 사업구조 구축','내실 경영 · 손익 중심','계열사 통폐합 · 위탁사업장 수익성 평가<br>관리비 절감 및 조직 효율화'],
@@ -684,7 +692,7 @@ add({html:()=>`${H('Ⅱ','한눈에 보는 <em>2027년 6대</em> 경영목표','
 
 add({html:()=>`${H('1·2','<em>투자자산 가치 극대화</em> · 수익중심 사업구조 구축','보유 자산의 수익성 제고와 사업 조직의 내실 경영 강화')}
  ${sec('1','투자자산 가치 극대화 — 부동산 · 금융자산 수익성 극대화')}
- <div class="row" style="gap:24px;margin-bottom:26px">${mini(1,'① 투자부동산','유동성 · 가치 ↑','투자부동산 활용안 및 매각안 추진','보유 부동산 가치·수익성 정밀 분석','➜ 최적 활용안 수립 및 저수익 자산 매각')}${mini(2,'② 투자증권','투자수익률 ↑','투자증권에 대한 수익률 향상','보유 유가증권 포트폴리오 상시 모니터링','➜ 리밸런싱을 통한 운용 수익 극대화')}</div>
+ <div class="row" style="gap:24px;margin-bottom:26px">${mini(1,'① 투자부동산','유동성 · 가치 ↑','투자부동산 활용안 및 매각안 추진','','보유 부동산 가치·수익성 정밀 분석<br>➜ 최적 활용안 수립 및 저수익 자산 매각',{bar:1,ts:46})}${mini(2,'② 투자증권','투자수익률 ↑','투자증권에 대한 수익률 향상','','보유 유가증권 포트폴리오 상시 모니터링<br>➜ 리밸런싱을 통한 운용 수익 극대화',{bar:1,ts:46})}</div>
  ${sec('2','수익중심의 사업구조 구축 — 계열사 · 매장 · 비용 3대 효율화')}
  <div class="flow" style="align-items:stretch">${mini(3,'① 계열사 개편','','계열사 통폐합 검토','그룹 시너지 극대화','유사·중복 사업 구조 재편 및<br>비효율 법인 통폐합 검토')}${arw}${mini(4,'② 매장 손익검증','','위탁사업장 수익성 평가','매장별 수익성 제고','전체 위탁매장 손익 정밀 분석 및<br>저수익 사업장 집중 개선')}${arw}${mini(5,'③ 원가 · 조직','','경영 효율화 추진','관리비 절감 · 조직 효율화','불필요 경비 통제(관리비 절감) 및<br>핵심 역량 중심 조직 슬림화')}</div>`,
  say:[["먼저 첫째와 둘째 목표인 투자자산 가치 극대화와 수익중심 사업구조 구축입니다. 보유 자산의 수익성을 높이고, 사업 조직의 내실 경영을 강화하겠습니다."],
@@ -697,9 +705,9 @@ add({html:()=>`${H('1·2','<em>투자자산 가치 극대화</em> · 수익중�
 
 add({html:()=>`${H('3·4','<em>AI 경영체계 완성</em> · 계열사 운영 효율화','더존 옴니이솔 기반 스마트워크 구축 및 계열사 ERP 고도화')}
  ${sec('3','AI 경영체계 완성 — 더존 옴니이솔(OmniEsol) 안정화 및 모바일 플랫폼')}
- <div class="flow" style="align-items:stretch;margin-bottom:26px">${mini(1,'STEP 1 · 기반 안정화','','더존 옴니이솔 안정화','업무자동화 확대 · 데이터 경영','전사 프로세스 표준화 및<br>데이터 기반 의사결정 체계 구축')}${arw}${mini(2,'STEP 2 · 플랫폼 확장','','모바일 업무 플랫폼 구축','언제 어디서나 실시간 업무 처리','더존 옴니이솔 모바일 연동으로<br>결재·보고·현장 업무 스피드 극대화')}${arw}${mini(3,'GOAL · AI 경영 완성','','핵심업무 AI 자동화','업무자동화율 80% 이상 달성','단순·반복 행정업무 축소 및<br>고부가가치 전략 업무 집중')}</div>
+ <div class="flow" style="align-items:stretch;margin-bottom:26px">${mini(1,'STEP 1 · 기반 안정화','','더존 옴니이솔 안정화','업무자동화 확대 · 데이터 경영','전사 프로세스 표준화 및<br>데이터 기반 의사결정 체계 구축',{ds:24})}${arw}${mini(2,'STEP 2 · 플랫폼 확장','','모바일 업무 플랫폼 구축','언제 어디서나 실시간 업무 처리','더존 옴니이솔 모바일 연동으로<br>결재·보고·현장 업무 스피드 극대화',{ds:24})}${arw}${mini(3,'GOAL · AI 경영 완성','','핵심업무 AI 자동화','업무자동화율 80% 이상 달성','단순·반복 행정업무 축소 및<br>고부가가치 전략 업무 집중',{gold:1,goldchip:1,ds:24})}</div>
  ${sec('4','계열사 운영 효율화 — 원풍약품상사 · 좋은타이어 ERP 고도화')}
- <div class="row" style="gap:24px">${mini(4,'① 원풍약품상사','','영업관리 ERP 고도화','물류 ERP ➜ 영업관리 ERP 확장','기존 물류 ERP 고도화에 이어<br>영업·수금·거래처 통합 ERP 완성')}${mini(5,'② 재고 · 원가 관리','','폐기재고 최소화','ERP 기반 재고회전율 상시 점검','유통기한·부진재고 사전 알림으로<br>폐기 손실 방지 및 이익률 개선')}${mini(6,'③ 좋은타이어','','수기관리 항목 전산화','9개 매장 엑셀 수기 ➜ ERP 정착','매장별 매출·재고 수기 작업 폐지<br>실시간 전산 검증 및 확장 기반 확보')}</div>`,
+ <div class="row" style="gap:24px">${mini(4,'① 원풍약품상사','','영업관리 ERP 고도화','물류 ERP ➜ 영업관리 ERP 확장','기존 물류 ERP 고도화에 이어<br>영업·수금·거래처 통합 ERP 완성',{bar:1,ts:46})}${mini(5,'② 재고 · 원가 관리','','폐기재고 최소화','ERP 기반 재고회전율 상시 점검','유통기한·부진재고 사전 알림으로<br>폐기 손실 방지 및 이익률 개선',{bar:1,ts:46})}${mini(6,'③ 좋은타이어','','수기관리 항목 전산화','9개 매장 엑셀 수기 ➜ ERP 정착','매장별 매출·재고 수기 작업 폐지<br>실시간 전산 검증 및 확장 기반 확보',{bar:1,ts:46})}</div>`,
  say:[["셋째와 넷째 목표입니다. 더존 옴니이솔 기반의 스마트워크를 구축하고, 계열사 ERP를 고도화하겠습니다."],
   ["AI 경영체계 완성은 세 단계로 추진합니다. 1단계는 기반 안정화로, 더존 옴니이솔을 안정화하고 전사 프로세스를 표준화하여 데이터 기반 의사결정 체계를 구축합니다."],
   ["2단계는 플랫폼 확장으로, 옴니이솔 모바일 연동을 통해 언제 어디서나 실시간으로 업무를 처리하고, 결재와 보고, 현장 업무의 속도를 높이겠습니다."],
@@ -710,11 +718,11 @@ add({html:()=>`${H('3·4','<em>AI 경영체계 완성</em> · 계열사 운영 �
 
 
 add({html:()=>`${H('5','그룹 <em>재무 건전성 강화</em> 5대 실행과제','선제적 리스크 관리 · 현금흐름 중심 경영 · 개정세법 기반 절세전략 실행')}
- <div class="g6">${[['1','그룹 재무구조','그룹 재무건전성 강화','부채비율 관리 · 재무안정성 확보','22개 관계사 월간 손익·재무 상태 상시 점검<br>차입금 구조 개선 및 자기자본 건전성 제고',''],
-  ['2','유동성 관리','현금흐름 관리 강화','자금수지 예측 · 대손채권 방지','법인별 일·월 단위 자금수지 모니터링 및<br>미수채권 회수 기일 철저 관리',''],
-  ['3','자금 운용','금융수익 극대화','이자수익 ↑ · 이자비용 ↓','금융권 MMDA·예금 금리 비교 예치 및<br>기준금리 변동에 따른 여신 상환·대환 실행',''],
-  ['4','세무 리스크 관리','세무리스크 최소화','','관계사 자체 기장·신고 적정성 사전 검증 및 외부회계·지방세 조사 완벽 대응<br>법적 절차 및 증빙 관리 철저화로 세무 리스크 원천 차단','추징세액 Zero 유지'],
-  ['5','전략적 세무 기획','개정세법 분석을 통한 절세전략 수립','','2027년 개정세법 주요 항목 정밀 분석 및 법인별 맞춤형 공제·감면 적용<br>폐기재고 결산 반영 등 선제적 세무조정으로 실질 세부담 절감','법인세 절감 극대화']].map((c,i)=>`<div class="glass rv" style="--i:${i+1};grid-column:span ${i<3?2:3};padding:24px 30px;min-height:330px;display:flex;flex-direction:column"><div class="row" style="align-items:center;gap:14px"><div class="num">${c[0]}</div>${c[5]?`<span class="chip" style="font-size:21px;padding:4px 16px">${c[1]}</span><span class="chip g" style="font-size:21px;padding:4px 16px;margin-left:auto">${c[5]}</span>`:`<span class="chip" style="font-size:21px;padding:4px 16px;margin-left:auto">${c[1]}</span>`}</div><h3 style="font-size:38px;font-weight:900;margin:14px 0 8px;line-height:1.25">${c[2]}</h3>${c[3]?`<div style="font-size:26px;font-weight:700;color:var(--gold2)">${c[3]}</div>`:''}<div style="margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:23px;line-height:1.5;color:#dfe5f3">${c[4]}</div></div>`).join('')}</div>`,
+ <div class="g6" style="gap:22px">${[['1','그룹 재무구조','','그룹 재무건전성 강화','부채비율 관리 · 재무안정성 확보','22개 관계사 월간 손익·재무 상태 상시 점검<br>차입금 구조 개선 및 자기자본 건전성 제고'],
+  ['2','유동성 관리','','현금흐름 관리 강화','자금수지 예측 · 대손채권 방지','법인별 일·월 단위 자금수지 모니터링 및<br>미수채권 회수 기일 철저 관리'],
+  ['3','자금 운용','','금융수익 극대화','이자수익 ↑ · 이자비용 ↓','금융권 MMDA·예금 금리 비교 예치 및<br>기준금리 변동에 따른 여신 상환·대환 실행'],
+  ['4','세무 리스크 관리','추징세액 Zero 유지','세무리스크 최소화','','관계사 자체 기장·신고 적정성 사전 검증 및 외부회계·지방세 조사<br>완벽 대응<br>법적 절차 및 증빙 관리 철저화로 세무 리스크 원천 차단'],
+  ['5','전략적 세무 기획','법인세 절감 극대화','개정세법 분석을 통한 절세전략 수립','','2027년 개정세법 주요 항목 정밀 분석 및 법인별 맞춤형 공제·감면<br>적용<br>폐기재고 결산 반영 등 선제적 세무조정으로 실질 세부담 절감']].map((c,i)=>`<div class="glass rv" style="--i:${i+1};grid-column:span ${i<3?2:3};padding:24px 30px;min-height:${i<3?270:300}px;display:flex;flex-direction:column;${i>=3?'border-color:#d9b66f;':''}"><div class="row" style="align-items:center;gap:14px"><div class="num" style="width:56px;height:56px;font-size:30px">${c[0]}</div>${c[2]?`<span class="chip" style="font-size:23px;font-weight:700;padding:7px 28px;border-radius:999px;background:#2b3a62;border:1px solid #3d4f7d;color:#f3dca4">${c[1]}</span><span class="chip" style="font-size:23px;font-weight:700;padding:7px 28px;border-radius:999px;background:#d9b66f;border:0;color:#1a1305;margin-left:auto">${c[2]}</span>`:`<span class="chip" style="font-size:23px;font-weight:700;padding:7px 28px;border-radius:999px;background:#2b3a62;border:1px solid #3d4f7d;color:#f3dca4;margin-left:auto">${c[1]}</span>`}</div><h3 style="font-size:${i<3?44:46}px;font-weight:900;margin:16px 0 8px;white-space:nowrap;line-height:1.25;color:#fff">${c[3]}</h3>${c[4]?`<div style="font-size:30px;font-weight:700;color:var(--gold2)">${c[4]}</div>`:''}<div style="margin-top:auto;padding-top:14px;border-top:1px solid #3d4a75;font-size:25px;line-height:1.5;color:#b8c4de">${c[5]}</div></div>`).join('')}</div>`,
  say:[["다섯째, 그룹 재무 건전성 강화를 위한 5대 실행과제입니다. 선제적 리스크 관리, 현금흐름 중심 경영, 개정세법 기반 절세전략을 실행하겠습니다."],
   ["첫째, 그룹 재무구조입니다. 22개 관계사의 월간 손익과 재무 상태를 상시 점검하고, 차입금 구조를 개선하여 부채비율을 관리하고 자기자본 건전성을 높이겠습니다."],
   ["둘째, 유동성 관리입니다. 법인별로 일 단위, 월 단위 자금수지를 모니터링하고, 미수채권 회수 기일을 철저히 관리하여 현금흐름을 강화하겠습니다."],
@@ -724,12 +732,12 @@ add({html:()=>`${H('5','그룹 <em>재무 건전성 강화</em> 5대 실행과�
 
 
 add({html:()=>`${H('6','2027년 <em>핵심성과지표</em> 목표','재무 성과 극대화와 디지털·AI 경영 혁신을 위한 6대 정량 목표')}
- <div class="g5" style="grid-template-columns:repeat(3,1fr);gap:24px">${[['그룹매출','외형 성장','전년대비 성장','최고대비 성장 달성','신규 매장 확대 및 계열사 시너지로<br>역대 최고 그룹 매출 달성'],
-  ['영업이익','수익성 제고','전년대비 성장','수익중심 사업구조 안착','위탁사업장 수익성 평가 및<br>관리비 절감으로 영업이익 향상'],
-  ['법인세 절감','세무 효율','절세전략 실행','개정세법 반영 · 리스크 Zero','개정세법 정밀 분석 및 폐기재고 반영 등<br>체계적 세무조정으로 실질 세액 절감'],
-  ['ERP 활용률','DX 정착','95% 이상','전 계열사 전산 시스템 정착','원풍약품 영업관리 ERP 고도화 및<br>좋은타이어 9개 매장 수기 업무 전산화'],
-  ['업무자동화','업무 혁신','80% 이상','반복 행정업무 자동화','자동전표 연동 및 표준 프로세스 확대로<br>업무 처리 시간 획기적 단축'],
-  ['AI 도입','AI 경영','핵심업무 자동화','더존 옴니이솔 AI 경영 완성','옴니이솔 안정화 및 모바일 플랫폼 구축으로<br>데이터 기반 AI 의사결정 체계 완성']].map((c,i)=>`<div class="glass tilt rv" style="--i:${i+1};padding:26px 32px;min-height:326px;display:flex;flex-direction:column"><div class="row" style="align-items:center;gap:14px"><div style="font-size:30px;font-weight:700">${c[0]}</div><span class="chip g" style="font-size:22px;padding:5px 18px;margin-left:auto">${c[1]}</span></div><div class="big gold" style="font-size:54px;letter-spacing:-1px;margin:28px 0 14px;line-height:1.15">${c[2]}</div><div style="font-size:27px;font-weight:700">${c[3]}</div><div style="margin-top:auto;padding-top:14px;border-top:1px solid var(--line);font-size:24px;line-height:1.5;color:#dfe5f3">${c[4]}</div></div>`).join('')}</div>`,
+ <div class="g5" style="grid-template-columns:repeat(3,1fr);gap:24px">${[['그룹매출','외형 성장','전년대비 성장','최고대비 성장 달성','신규 매장 확대 및 계열사 시너지로<br>역대 최고 그룹 매출 달성',1],
+  ['영업이익','수익성 제고','전년대비 성장','수익중심 사업구조 안착','위탁사업장 수익성 평가 및<br>관리비 절감으로 영업이익 향상',1],
+  ['법인세 절감','세무 효율','절세전략 실행','개정세법 반영 · 리스크 Zero','개정세법 정밀 분석 및 폐기재고 반영 등<br>체계적 세무조정으로 실질 세액 절감',1],
+  ['ERP 활용률','DX 정착','95% 이상','전 계열사 전산 시스템 정착','원풍약품 영업관리 ERP 고도화 및<br>좋은타이어 9개 매장 수기 업무 전산화',0],
+  ['업무자동화','업무 혁신','80% 이상','반복 행정업무 자동화','자동전표 연동 및 표준 프로세스 확대로<br>업무 처리 시간 획기적 단축',0],
+  ['AI 도입','AI 경영','핵심업무 자동화','더존 옴니이솔 AI 경영 완성','옴니이솔 안정화 및 모바일 플랫폼 구축으로<br>데이터 기반 AI 의사결정 체계 완성',0]].map((c,i)=>`<div class="glass rv" style="--i:${i+1};padding:26px 32px;min-height:330px;display:flex;flex-direction:column;${c[5]?'border-color:#d9b66f;':''}"><div class="row" style="align-items:center;gap:14px"><div style="font-size:34px;font-weight:700;color:#fff">${c[0]}</div><span class="chip" style="font-size:23px;font-weight:700;padding:7px 28px;border-radius:999px;margin-left:auto;background:#2b3a62;border:1px solid ${c[5]?'#d9b66f':'#3d4f7d'};color:${c[5]?'#f3dca4':'#6aa7e6'}">${c[1]}</span></div><div class="big gold" style="font-size:64px;letter-spacing:-1px;margin:26px 0 14px;line-height:1.15;color:#f3dca4">${c[2]}</div><div style="font-size:29px;font-weight:700;color:#fff">${c[3]}</div><div style="margin-top:auto;padding-top:14px;border-top:1px solid #3d4a75;font-size:25px;line-height:1.5;color:#b8c4de">${c[4]}</div></div>`).join('')}</div>`,
  say:[["마지막으로 2027년 핵심성과지표 목표입니다. 재무 성과 극대화와 디지털·AI 경영 혁신을 위한 6대 정량 목표를 설정했습니다."],
   ["그룹매출은 전년 대비 성장하여 역대 최고 매출을 달성하는 것이 목표입니다. 신규 매장 확대와 계열사 시너지를 통해 외형 성장을 이루겠습니다."],
   ["영업이익 역시 전년 대비 성장을 목표로, 위탁사업장 수익성 평가와 관리비 절감을 통해 수익중심 사업구조를 안착시키겠습니다."],
@@ -749,7 +757,7 @@ function buildAll(){
   SL.forEach((s,i)=>{const d=document.createElement('section');d.className='slide '+(s.cls||'');d.innerHTML=s.html()+`<div class="pg">${i+1}</div>`;stage.insertBefore(d,sub);s.el=d});
 }
 buildAll();
-function fitAll(){SL.forEach(s=>{if(s.cls||s.id==='team')return;const el=s.el;let w=el.querySelector('.fit');
+function fitAll(){SL.forEach(s=>{if(s.cls||s.id==='team'||s.el.querySelector('.t10col'))return;const el=s.el;let w=el.querySelector('.fit');
  if(!w){w=document.createElement('div');w.className='fit';[...el.children].forEach(c=>{if(!c.classList.contains('hd')&&!c.classList.contains('brand')&&!c.classList.contains('pg'))w.appendChild(c)});el.insertBefore(w,el.querySelector('.pg'))}
  const cn=[...w.querySelectorAll('.cnt')],old=cn.map(c=>c.textContent);cn.forEach(c=>c.textContent=(+c.dataset.to).toLocaleString());
  w.style.transformOrigin='0 0';const avail=960-w.offsetTop;let k=w.querySelector('.ba')?1.15:1.4,ok=false;
@@ -782,17 +790,18 @@ function teamIn(i){const s=cur(),sp=s.querySelector('#spot');clearTimeout(spTime
   spTimer=setTimeout(()=>{const ph=sp.querySelector('.sp-ph'),im=sp.querySelector('#spImg');
     ph.classList.remove('full');im.onerror=null;
     im.onload=()=>{ph.classList.toggle('full',im.dataset.mode==='full')};
-    im.dataset.mode='full';im.onerror=()=>{im.onerror=null;im.dataset.mode='bust';im.src=`assets/${m.p}.jpg`;ph.classList.remove('full')};
-    im.src=`assets/full${i+1}.jpg`;
+    im.dataset.mode='bust';
+    im.src=`assets/${m.p}.jpg`;
     sp.querySelector('#spNo').textContent=String(i+1).padStart(2,'0')+' / 11';sp.querySelector('#spNm').textContent=m.n;sp.querySelector('#spTi').textContent=TITLES[m.n]||'경영전략본부';
     sp.classList.add('show')},i===0?50:650)}
+function showFarm(){const b=cur().querySelector('#farmBox');if(b){b.classList.add('on');runCnt()}}
 function baSet(i){const s=cur(),L=[['sejong'],['daejeon'],['incheon']][i][0];
   s.querySelectorAll('.tab').forEach((t,k)=>t.classList.toggle('on',k==i));
   const b=s.querySelector('.ba');b.querySelector('.b .ph img').src=`assets/${L}_before.jpg`;b.querySelector('.a .ph img').src=`assets/${L}_after.jpg`;
   b.classList.remove('swap');void b.offsetWidth;b.classList.add('swap')}
 document.addEventListener('click',e=>{const t=e.target.closest('.tab');if(t&&cur().querySelector('.ba'))baSet(+t.dataset.r)});
 /* make non-narrated entry state work */
-function resetSlide(i){const s=SL[i].el;clearTimeout(spTimer);const spo=s.querySelector('.spot');if(spo)spo.classList.remove('show');s.querySelectorAll('.tc').forEach(c=>{c.classList.remove('in','hot')});
+function resetSlide(i){const s=SL[i].el;clearTimeout(spTimer);const spo=s.querySelector('.spot');if(spo)spo.classList.remove('show');s.querySelectorAll('.tc').forEach(c=>{c.classList.remove('in','hot')});s.querySelectorAll('.late').forEach(x=>x.classList.remove('on'));
   s.querySelectorAll('.cnt').forEach(c=>c.textContent='0');
   s.querySelectorAll('.dn').forEach(c=>{c.style.transition='none';c.setAttribute('stroke-dasharray',`0 ${c.dataset.c}`)});
   
