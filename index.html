@@ -19,7 +19,7 @@ html,body{height:100%;background:#03060e;color:var(--ink);font-family:var(--sans
 button{font-family:inherit;cursor:pointer}
 
 /* ===== stage ===== */
-#viewport{position:fixed;inset:0 0 64px 0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
 #stage{width:1920px;height:1080px;flex:none;position:relative;transform-origin:center center;
   background:radial-gradient(1200px 800px at 80% -10%,#21386b 0%,transparent 60%),radial-gradient(900px 700px at -10% 110%,#2a1a3a 0%,transparent 55%),linear-gradient(160deg,var(--bg1),var(--bg0));
   overflow:hidden;box-shadow:0 30px 120px #000;perspective:2600px}
@@ -231,19 +231,6 @@ svg text{font-family:var(--sans)}
   background:rgba(4,8,18,.78);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(8px);z-index:20;transition:opacity .3s;opacity:0}
 #sub.on{opacity:1}
 
-/* controls */
-#bar{position:fixed;left:0;right:0;bottom:0;height:64px;background:#060b16;border-top:1px solid #1d2842;display:flex;align-items:center;gap:10px;padding:0 16px;z-index:50;font-size:15px}
-#bar button,#bar select{height:40px;border-radius:10px;border:1px solid #2a3858;background:#101a31;color:#e9eefb;padding:0 14px;font-size:15px}
-#bar button:hover{background:#18284a}
-#bar button.on{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a1305;border-color:transparent;font-weight:700}
-#bar .prog{flex:1;height:8px;background:#16213b;border-radius:8px;overflow:hidden;cursor:pointer;min-width:60px}
-#bar .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .5s}
-#bar .cnt{color:#9fb0d3;min-width:64px;text-align:center}
-#bar input[type=range]{width:84px}
-#bar label{color:#9fb0d3;display:flex;align-items:center;gap:6px}
-#bar button,#bar label,#bar .cnt{white-space:nowrap;flex:none}
-@media (max-width:1000px){#bar select,#bar label.sp,#bar #bEdit{display:none}}
-@media (max-width:640px){#bar label{display:none}}
 
 /* start overlay + modal */
 .ov{position:fixed;inset:0;background:rgba(3,6,14,.9);z-index:100;display:grid;place-items:center;backdrop-filter:blur(10px)}
@@ -320,13 +307,6 @@ html,body{background:#0b1426}
 
 <div id="viewport"><div id="stage"><div id="sub"></div></div></div>
 
-<div id="bar">
-  <button id="bPrev" title="이전 (←, PageUp)">◀</button>
-  <button id="bNext" title="다음 (→, Space, PageDown)">▶</button>
-  <span class="cnt" id="cnt">1 / 1</span>
-  <div class="prog" id="prog"><i></i></div>
-  <button id="bFull" title="전체화면 (F)">⛶</button>
-</div>
 
 <div class="ov hide" id="start">
   <div class="box">
@@ -761,7 +741,7 @@ fitAll();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitAl
 addEventListener('load',fitAll);
 
 /* scale */
-function fit(){const vh=innerHeight-64,k=Math.min(innerWidth/1920,vh/1080);stage.style.transform=`scale(${k})`;const vp=document.getElementById('viewport');stage.style.margin=`${-(1080*(1-k))/2}px ${-(1920*(1-k))/2}px`}
+function fit(){const vh=innerHeight,k=Math.min(innerWidth/1920,vh/1080);stage.style.transform=`scale(${k})`;const vp=document.getElementById('viewport');stage.style.margin=`${-(1080*(1-k))/2}px ${-(1920*(1-k))/2}px`}
 addEventListener('resize',fit);fit();
 
 /* 3D tilt */
@@ -808,7 +788,9 @@ function show(i,fromUser){
   i=Math.max(0,Math.min(SL.length-1,i));
   SL.forEach((s,k)=>{s.el.classList.toggle('past',k<i);if(k!==i)s.el.classList.remove('active')});
   idx=i;resetSlide(i);SL[i].el.classList.add('active');
-  $('cnt').textContent=`${i+1} / ${SL.length}`;$('prog').firstElementChild.style.width=((i+1)/SL.length*100)+'%';
+  const cnt=$('cnt'),prog=$('prog');
+  if(cnt)cnt.textContent=`${i+1} / ${SL.length}`;
+  if(prog&&prog.firstElementChild)prog.firstElementChild.style.width=((i+1)/SL.length*100)+'%';
   runSlide();
 }
 function stopAll(){token++;clearTimeout(timer);if('speechSynthesis' in window)speechSynthesis.cancel();if(sub)sub.classList.remove('on')}
@@ -817,17 +799,34 @@ function runSlide(){
   stopAll();const my=token,list=segs();
   list.forEach(([t,fn],j)=>{if(fn)setTimeout(()=>{if(my===token)try{fn()}catch(e){}},300+j*(SL[idx].id==='team'?2400:1500))});
 }
-$('bNext').onclick=()=>show(idx+1,true);
-$('bPrev').onclick=()=>show(idx-1,true);
-$('prog').onclick=e=>{const r=e.currentTarget.getBoundingClientRect();show(Math.floor((e.clientX-r.left)/r.width*SL.length),true)};
-$('bFull').onclick=()=>{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()};
+if($('bNext'))$('bNext').onclick=()=>show(idx+1,true);
+if($('bPrev'))$('bPrev').onclick=()=>show(idx-1,true);
+if($('prog'))$('prog').onclick=e=>{const r=e.currentTarget.getBoundingClientRect();show(Math.floor((e.clientX-r.left)/r.width*SL.length),true)};
+if($('bFull'))$('bFull').onclick=()=>{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()};
 
+/* keyboard: Enter/Space/Right/PageDown -> next, Backspace/Left/PageUp -> prev */
 addEventListener('keydown',e=>{
-  if(e.target.tagName==='INPUT')return;
-  if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(idx+1,true)}
-  else if(e.key==='ArrowLeft'||e.key==='PageUp'){show(idx-1,true)}
-  else if(e.key==='f'||e.key==='F'){$('bFull').click()}
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.target.isContentEditable)return;
+  if(e.key==='Enter'||e.key===' '||e.code==='Space'||e.key==='ArrowRight'||e.key==='PageDown'){
+    e.preventDefault();
+    show(idx+1,true);
+  }
+  else if(e.key==='Backspace'||e.key==='ArrowLeft'||e.key==='PageUp'){
+    e.preventDefault();
+    show(idx-1,true);
+  }
+  else if(e.key==='f'||e.key==='F'){
+    if(document.fullscreenElement)document.exitFullscreen();
+    else document.documentElement.requestFullscreen();
+  }
   else if(e.key==='e'||e.key==='E'){openEd()}
+});
+
+/* mouse left click: next slide */
+document.addEventListener('click',e=>{
+  if(e.button!==0)return;
+  if(e.target.closest('button, input, textarea, a, .tab, .ov:not(.hide)'))return;
+  show(idx+1,true);
 });
 
 /* start directly */
